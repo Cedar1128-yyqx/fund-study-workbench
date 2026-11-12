@@ -79,6 +79,9 @@ body{line-height:1.75}.hero p,.lead,.concept p,.term p,.formula p,.mapdesc,.chap
 <style>
 .header-tools{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.sync-badge,.account-email{font-size:12px;color:var(--muted)}.account-controls{display:flex;align-items:center;gap:8px}.account-controls button{padding:6px 11px;border:1px solid rgba(0,0,0,.12);border-radius:999px;background:rgba(255,255,255,.42);font-size:12px}.auth-hidden{display:none!important}.auth-gate{position:fixed;inset:0;z-index:20;display:grid;place-items:center;padding:18px;background:rgba(25,27,29,.38);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}.auth-card{width:min(460px,100%);padding:26px;border-radius:26px;background:linear-gradient(120deg,rgba(255,255,255,.95),rgba(236,238,240,.93));border:1px solid rgba(255,255,255,.8);box-shadow:0 24px 80px rgba(0,0,0,.2);color:#252522}.auth-card h1{margin:0 0 5px;font:500 28px/1.25 "Newsreader","Songti SC",serif}.auth-card p{margin:8px 0;color:#60615d}.auth-card label{display:block;margin:12px 0 5px;font-size:13px;color:#555650}.auth-card input{width:100%;padding:11px 13px;border:1px solid rgba(0,0,0,.14);border-radius:13px;background:rgba(255,255,255,.78);color:#222}.auth-switch{display:flex;gap:7px;margin:18px 0 10px}.auth-switch button,.auth-submit,.auth-secondary{border:0;border-radius:999px;padding:9px 15px;background:rgba(0,0,0,.07);color:#333;font:inherit}.auth-switch button.active,.auth-submit{background:linear-gradient(180deg,#626260,#363634);color:white}.auth-submit{width:100%;margin-top:15px}.auth-secondary{margin-top:12px}.auth-message{min-height:22px;margin-top:10px;font-size:13px;color:#7a5619}.auth-config{padding:12px 14px;border-radius:14px;background:rgba(0,0,0,.045);font-size:13px}.auth-config code{font-size:12px;overflow-wrap:anywhere}.auth-email-confirm{font-size:13px;color:#555650}.auth-hidden-el{display:none!important}
 @media(prefers-color-scheme:dark){.auth-card{background:linear-gradient(120deg,#27282a,#1d1e20);border-color:rgba(255,255,255,.14);color:#ecece8}.auth-card p,.auth-card label,.auth-email-confirm{color:#c4c4bd}.auth-card input{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.18);color:#ecece8}.auth-switch button,.auth-secondary{color:#ecece8;background:rgba(255,255,255,.1)}.auth-config{background:rgba(255,255,255,.07)}.account-controls button{color:var(--ink);background:rgba(255,255,255,.25)}}
+.lesson-steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin:3px 0 5px}.lesson-step{display:flex;align-items:center;justify-content:center;gap:7px;min-height:42px;padding:8px 10px;border:1px solid rgba(0,0,0,.1);border-radius:999px;background:rgba(255,255,255,.4);color:var(--muted);font-size:13px}.lesson-step span{font-size:10px;letter-spacing:.08em}.lesson-step.active{background:linear-gradient(180deg,#626260,#363634);border-color:#363634;color:white}.lesson-step.locked{opacity:.48;cursor:not-allowed}.lesson-label{margin:0 0 8px;color:var(--muted);font-size:11px;font-weight:700;letter-spacing:.1em}.plain-card{border-left:3px solid rgba(0,0,0,.35)}.scene-example{padding:12px 14px;margin:8px 0;border-radius:15px;background:rgba(0,0,0,.035);line-height:1.82}.scene-example p{margin:4px 0}.warning-card,.summary-card{padding:20px clamp(17px,2.5vw,26px);border:1px solid rgba(255,255,255,.68);border-radius:20px;background:var(--sheen),rgba(255,255,255,.42);box-shadow:inset 0 1px 0 rgba(255,255,255,.65)}.warning-card{border-left:3px solid #98703b}.warning-card ul,.summary-list{margin:6px 0;padding-left:21px;line-height:1.9}.lesson-source{margin:0 3px}.question-text{font-size:16px;font-weight:650}.summary-score{margin-top:14px;padding:11px 13px;border-radius:14px;background:rgba(0,0,0,.04)}.rating-buttons{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.rating-buttons button{min-width:80px}.detail-actions button:disabled{opacity:.42;cursor:not-allowed}
+@media(max-width:560px){.lesson-steps{gap:5px}.lesson-step{min-height:39px;padding:7px 4px;gap:4px;font-size:11px}.warning-card,.summary-card{border-radius:17px;padding:15px}.rating-buttons{display:grid;grid-template-columns:repeat(3,1fr)}.rating-buttons button{min-width:0;padding:9px 7px}}
+@media(prefers-color-scheme:dark){.lesson-step,.scene-example,.summary-score{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.14);color:#d1d1ca}.lesson-step.active{background:linear-gradient(180deg,#626260,#363634);color:white}.warning-card,.summary-card{background:var(--sheen),rgba(255,255,255,.055);border-color:rgba(255,255,255,.14)}.plain-card{border-left-color:#c4c4bd}.scene-example{background:rgba(255,255,255,.045)}}
 </style></head>
 <body>
 <div id="appShell" class="wrap">
@@ -179,6 +182,43 @@ const SOURCES=[
 ["中国证券投资基金业协会投资者教育：股权投资基金运作流程","https://investor.amac.org.cn/investread/tzbdjczs/202006/t20200603_9630.html","用于募、投、管、退的整体流程解释。"],
 ["全国中小企业股份转让系统：股票挂牌规则（2025年修订）","https://www.neeq.com.cn/uploads/1/file/public/202504/20250426150837_peadqo3te8.pdf","补充全国股转系统挂牌申请、审核和信息披露的官方规则。"]
 ];
+const DEEP_LESSONS={
+"0:0":[
+{formal:"金融市场是资金供给者与资金需求者借助金融工具进行资金融通，并由交易机制、市场参与者和制度安排支撑的场所或网络。",plain:"可以把它想成资金的连接系统：一边暂时有钱，一边需要钱；市场让双方按规则找到彼此，也帮助形成价格、完成交易和管理风险。",relation:"资金供给方 → 金融工具与交易规则 → 资金需求方；中介、交易场所和登记结算服务让过程可执行。",scene:["小林把暂时不用的储蓄买成债券，企业发行债券取得建设资金。两边通过债券这一金融工具建立借贷关系，市场规则规定如何发行、交易、付息和还本。","看一笔基金投资：投资者申购后取得基金份额；基金管理人按约定投资证券；交易场所撮合买卖，登记结算记录持仓变化。资金不是直接交给某家企业，经过基金财产和市场规则流转。"],focus:"先问谁提供资金、谁需要资金；再找交易的金融工具和让交易成立的规则。",pit:["金融市场不只是一个有地址的交易大厅，也包括规则、参与者和交易网络。","市场连接资金供给与需求，但不保证资金提供方盈利或本金安全。"],summary:["金融市场解决资金从哪里来、流向哪里的连接问题。","股票、债券等金融工具承载不同权利，交易规则决定如何成交。","市场提供交易和价格机制，不等于投资收益保证。"],qs:[
+{q:"小企业需要资金扩建，居民希望让闲置资金获得回报。金融市场主要在两者之间发挥什么作用？",o:["连接资金供给方与资金需求方，并提供交易规则","替居民挑选一定盈利的企业","把居民储蓄直接变成企业股权","由监管机构决定每种证券的成交价格"],ok:0,why:"金融市场通过金融工具和交易机制帮助资金供需双方建立关系。它不替投资者保证收益，也不由监管机构逐笔定价。"},
+{q:"一位投资者买入公司债券后，最准确的理解是什么？",o:["投资者依据债券约定成为公司的债权人","投资者自动成为公司股东","投资者成为基金管理公司的股东","投资者把资金无条件赠与公司"],ok:0,why:"债券代表约定条件下的债权关系；股票才代表公司股权。债券投资仍有信用、利率等风险。"},
+{q:"一家机构为证券买卖提供撮合，并由登记结算服务记录证券和资金交收。这些安排属于金融市场的哪一部分？",o:["市场运行所需的交易与服务机制","资金需求方发行的金融工具本身","投资者持有的基金份额","保证投资者收益的承诺"],ok:0,why:"交易场所、中介、登记结算和规则共同支撑市场运行；它们不是证券本身，也不会承诺投资收益。"}]},
+{formal:"金融市场中的主体是参与交易的个人或机构；客体是被交易的金融工具或金融权利；价格表达交易条件；交易方式和中介服务共同决定交易如何达成。",plain:"拆解一个金融市场，可以连续问五个问题：谁在交易、交易什么、按什么价格、怎么成交、谁提供服务。",relation:"谁（主体） → 交易什么（客体） → 价格如何形成 → 怎样成交 → 谁支持交易和结算。",scene:["小周在证券交易平台买入一只债券基金：小周是投资者，基金份额是交易对象，申购净值和费率构成交易条件，平台按业务规则受理申请，登记机构确认份额。","同一家公司发行股票：发行人需要资金，投资者认购股票，发行价格与发行条件明确交易条件，承销等机构提供发行服务。"],focus:"把场景里的角色、交易对象、价格、成交方式和中介逐一标出，不要把“谁”与“买什么”混为一谈。",pit:["投资者、发行人、管理人是市场主体；股票、债券、基金份额是交易对象。","平台或中介提供服务，不因此成为产品投资收益的担保人。"],summary:["主体回答谁参与，客体回答交易的是什么。","价格、交易方式和中介服务共同决定交易如何完成。","分析场景时按五问拆开，能看清角色和职责。"],qs:[
+{q:"小周申购一只基金并取得基金份额。这里的小周和基金份额分别是什么？",o:["小周是市场主体，基金份额是交易客体","小周是交易客体，基金份额是市场主体","二者都是交易价格","二者都是中介机构"],ok:0,why:"投资者是参与交易的主体；基金份额是其买入、持有的金融权利，属于交易客体。"},
+{q:"交易平台受理申请，登记机构记录份额变化。最准确的说法是？",o:["它们提供交易或登记结算服务","它们因此成为基金份额持有人","它们决定基金未来收益","它们替代投资者承担市场风险"],ok:0,why:"平台和登记结算机构提供市场服务。基金净值变化带来的投资结果仍由投资者按产品规则承担。"},
+{q:"分析一笔证券交易，哪组问题最有助于分清市场构成？",o:["谁参与、交易什么、价格和规则如何、由谁提供服务","只看产品名称和最近涨幅","只问投资者买入时的心情","只看管理人办公地点"],ok:0,why:"主体、客体、价格、交易方式和中介服务是拆解市场的基本线索；近期涨幅不能说明交易结构。"}]},
+{formal:"股票代表股东对公司的权益；债券代表发行人按约定还本付息的债权关系；基金份额代表持有人依据基金法律文件享有的权利。",plain:"买股票像成为公司的小股东；买债券像把钱按约定借给发行人；买基金份额则是按基金规则拥有一份基金权益，由管理人管理基金财产。",relation:"股票：股权；债券：债权；基金份额：基金合同约定的持有者权利。三者的回报来源和风险承担方式不同。",scene:["甲买入某公司的股票，可能分享公司经营带来的股价变化和分红，但也承担公司经营与市场波动风险。乙买入该公司债券，按约定获得利息和到期偿还请求权，同时承担发行人无法还款的信用风险。丙申购股票基金，持有基金份额，由基金投资组合的表现影响净值。"],focus:"不要只看名称或价格，先看持有人取得的是股东权利、债权请求权，还是基金合同约定的份额权利。",pit:["股票不是债券：股东权利与债权请求权不同。","基金份额不是基金管理公司的股权，也不是对组合中每只证券的直接持有。","三类工具都可能亏损，法律关系不同不代表风险高低固定。"],summary:["股票对应股权，债券对应债权。","基金份额对应基金文件约定的持有者权利。","判断差异看权利内容、回报来源和风险承担。"],qs:[
+{q:"买入一家公司的普通股，投资者取得的核心权利关系是什么？",o:["公司股东权益","向公司按期收回本金的债权","对基金管理公司的所有权","固定利息的保证请求权"],ok:0,why:"股票代表股东权益。它不承诺固定利息或本金偿还，股价和分红取决于经营、市场及相关规则。"},
+{q:"投资者持有股票基金的基金份额，哪项理解正确？",o:["持有人享有基金文件约定的份额权利，基金由管理人按约管理","持有人直接成为组合里每家公司的股东登记人","持有人拥有基金管理公司股份","基金净值下跌时管理人必须补足本金"],ok:0,why:"基金份额是对基金财产安排的权益凭证，不等同于直接持有底层每只证券或管理公司股权，也不代表保本。"},
+{q:"某公司债券到期未能偿付。首先涉及哪种风险关系？",o:["发行人履行债务义务的信用风险","股东投票权变化","基金份额登记错误","销售服务费计提"],ok:0,why:"债券是债权关系，发行人无法按约还本付息属于信用风险。"}]},
+{formal:"资产管理是管理人基于委托或基金法律文件，对客户或基金财产进行投资管理并履行相应受托职责的活动。管理人应按约定和适用规则履职，投资结果由产品安排和资产表现决定。",plain:"投资者把钱交给一个有约定的管理安排：管理人负责按规则做投资决定，托管人等机构承担各自职责；专业管理不是替你保证赚钱。",relation:"投资者提供资金并取得相应权利 → 管理人依约管理 → 托管和服务机构按职责支持 → 投资盈亏按产品规则反映。",scene:["小林申购一只基金后，基金财产按合同与管理人自有财产区分。管理人依据投资策略买入证券；托管人按职责保管基金财产并进行相关监督。市场下跌时，基金净值可能下降，小林承担相应投资结果。"],focus:"分别识别谁拥有基金份额、谁作投资决策、谁承担托管职责；“受托管理”不等于“承诺收益”。",pit:["管理人承担投资管理职责，但不是基金财产的所有人。","托管人与管理人职责不同，托管不等于替投资者选择证券或保证收益。","投资者委托专业机构，不会因此消除市场风险。"],summary:["资产管理的核心是按委托和规则管理财产。","管理、托管和投资者权利需要区分。","专业管理尽责不等于保本或保证收益。"],qs:[
+{q:"基金管理人接受委托管理基金财产，最准确的职责描述是？",o:["按照法律、基金合同和投资策略管理基金","成为基金财产的个人所有人","保证基金份额净值只涨不跌","替每位投资者承担全部市场损失"],ok:0,why:"管理人按法律和基金文件履行投资管理职责，基金财产与其自有财产相区分，投资结果并无保证。"},
+{q:"市场下跌导致基金净值下降时，哪项说法最符合资产管理关系？",o:["投资者按基金规则承担相应投资结果，管理人仍须依法依约履职","托管人必须补足净值差额","管理人必须无条件赔偿所有损失","基金份额自动变成公司债券"],ok:0,why:"投资损益由资产表现和产品约定决定；管理人须履责，但不因市场亏损自动承担保本义务。"},
+{q:"基金托管人保管基金财产，是否意味着它负责挑选基金全部证券？",o:["不是；投资决策和托管职责需要区分","是；托管人是基金的唯一投资决策者","是；托管人必须保证收益","不是；托管人因此没有任何职责"],ok:0,why:"托管人依规定履行财产保管等职责；投资决策通常由管理人作出。两类机构各有职责。"}]}
+],
+"0:1":[
+{formal:"基金是依法或依约设立、按照既定规则汇集或管理财产并进行投资的安排或产品。投资者持有基金份额，基金财产依规则独立核算并用于基金运作。",plain:"可以把基金理解成一个按合同运行的“共同投资账户”：很多人按规则投入资金，基金形成自己的财产，再由管理人按约定投资。你拿到的是基金份额。",relation:"投资者投入资金 → 形成基金财产 → 管理人按规则投资 → 净值和份额权利体现投资结果。",scene:["一只基金向投资者募集资金，成立后形成基金财产。基金管理人按合同投资债券和股票，托管人按职责处理基金财产保管。投资者持有基金份额，基金资产涨跌会影响份额净值。"],focus:"把基金产品、基金管理公司、基金财产和基金份额当成四个不同对象来辨认。",pit:["基金产品不是基金管理公司本身。","基金份额代表基金合同约定的权利，不等于直接拥有管理公司或每项底层资产。","基金投资有风险，集合投资不代表保本。"],summary:["基金是按规则设立和运行的投资财产安排。","投资者持有份额，管理人管理基金财产。","产品、管理公司、基金财产和份额不能混为一谈。"],qs:[
+{q:"投资者申购基金后，通常持有的是什么？",o:["基金份额及其约定权利","基金管理公司的股份","基金投资组合里每项资产的直接产权","托管人的经营收入"],ok:0,why:"投资者持有基金份额，具体权利由法律和基金文件约定；不因此取得管理公司的股份或逐项底层资产产权。"},
+{q:"基金财产与管理人自有财产相区分，主要说明什么？",o:["基金资产按规则独立核算并用于基金运作","管理人可以把基金资产用作公司日常费用","基金份额净值永远不会下降","投资者不再承担投资风险"],ok:0,why:"基金财产依法律和产品文件独立运作；财产隔离不等于收益保证或风险消失。"},
+{q:"基金管理人和基金产品分别是什么？",o:["管理人是履职机构，基金产品是按规则运行的财产安排","两者是完全相同的法律主体","基金产品是管理公司发行的普通股票","管理人就是基金财产本身"],ok:0,why:"管理人负责管理职责，基金产品是投资者参与的产品或财产安排，基金财产另行核算。"}]},
+{formal:"基金分类必须先看分类维度：公募与私募主要看募集方式；股票型、债券型、货币型等主要看投资对象或策略；开放式与封闭式主要看份额运作和申赎安排。不同维度可以同时描述一只基金。",plain:"像给基金贴几张不同角度的标签：一张说钱怎么募集，一张说主要投什么，一张说平时能不能申购赎回。它们不是互相替代的单选分类。",relation:"募集方式（公募/私募） × 投资对象（股票/债券/货币等） × 运作方式（开放/封闭）。",scene:["某产品面向公众募集，主要投资债券，并按合同在开放日办理申购赎回。它可以同时被描述为公募、债券型、开放式基金，因为每个称呼回答的是不同问题。"],focus:"看到一个分类名称，先问它回答的是“向谁募集”“主要投资什么”还是“怎样运作”。",pit:["公募/私募不是按投资股票还是债券划分。","开放式/封闭式描述运作与申赎安排，不说明产品风险高低。","一只基金可以同时拥有多个维度的分类标签。"],summary:["分类先看维度，避免把不同问题混在一起。","募集、投资对象、运作方式是三条不同分类轴。","同一只产品可以同时属于多个分类。"],qs:[
+{q:"“债券型”主要说明基金的什么特点？",o:["主要投资对象或投资范围","是否向公众募集","投资者每天能否赎回","管理人是否提供保本"],ok:0,why:"债券型按主要投资对象或投资策略分类；公募/私募看募集方式，开放/封闭看运作安排。"},
+{q:"某只基金是公募、债券型、开放式。这三个称呼分别描述什么？",o:["募集方式、主要投资对象、运作与申赎安排","风险等级、管理人规模、托管银行","投资期限、发行市场、收益保证","投资者人数、股票占比、基金公司股权"],ok:0,why:"三个标签对应不同分类维度，因此可以同时成立。"},
+{q:"仅凭“开放式基金”能否判断它主要投资股票还是债券？",o:["不能；开放式主要说明份额运作和申赎安排","能；开放式一定是股票型","能；开放式一定是货币型","不能；开放式表示没有投资标的"],ok:0,why:"开放式/封闭式与股票型/债券型是不同分类轴，不能互相推断。"}]},
+{formal:"基金生命周期是基金从产品设计和募集开始，经历成立、投资运作、估值核算、信息披露、收益分配，直至清算终止的全过程。不同阶段由相关机构按职责完成工作。",plain:"把基金当成一个有起点和终点的项目：先设计并募集，成立后投资和记账，运行中持续披露，最后按规则退出或清算。",relation:"设计与募集 → 成立 → 投资运作与估值 → 持续披露和分配 → 清算终止。",scene:["一只新基金先制定基金合同并募集。成立后，管理人依约投资，托管、登记和估值等环节支持运作；基金按要求披露信息。到期或触发终止条件后，依法依约清算并处理剩余财产。"],focus:"每个阶段都问发生了什么、由谁负责、投资者会获得什么信息。",pit:["募集完成不等于基金已经经历完整运作；成立条件和时点要看适用规则。","估值和信息披露贯穿运作期间，不只是终止时才做。","到期、退出和清算按法律文件与适用规则处理。"],summary:["基金先募集和成立，再进入投资运作。","估值、核算、披露和分配支撑持续运作。","终止后还要清算并处理财产。"],qs:[
+{q:"基金成立后、终止前，以下哪项通常属于持续运作环节？",o:["投资管理、估值核算和信息披露","只做一次募集宣传后不再记录资产","把基金财产转为管理人自有财产","无需按合同记录投资者份额"],ok:0,why:"基金运作期间需持续投资管理、核算估值并按规定披露；基金财产和管理人财产应区分。"},
+{q:"基金到期并触发终止条件后，接下来通常还要做什么？",o:["按法律文件和适用规则清算并处理剩余财产","直接把所有份额改成管理公司股份","无需核对债务和基金资产","保证每位投资者收到本金加固定收益"],ok:0,why:"终止后仍需按规则清算、偿债和分配，结果取决于基金资产和合同安排。"},
+{q:"哪一顺序更符合基金的一般生命周期？",o:["产品设计募集 → 成立 → 投资运作 → 披露分配 → 清算终止","清算终止 → 募集 → 产品设计 → 成立","投资运作 → 募集 → 清算 → 成立","信息披露只发生在基金终止后"],ok:0,why:"产品先设计和募集，成立后进入运作，持续披露，终止时清算。实际细节依产品类型和文件规定。"}]},
+{formal:"基金市场参与主体包括投资者、基金管理人、基金托管人及销售、登记、估值、审计等服务机构。各方按法律、基金文件和服务协议承担不同职责。",plain:"一只基金像一个分工团队：投资者出资并享有份额权利，管理人负责投资管理，托管人履行财产托管职责，其他机构提供销售、登记或核算等服务。",relation:"投资者：出资与享有权利；管理人：投资管理；托管人：财产保管等托管职责；服务机构：按协议提供专业支持。",scene:["某基金将份额登记服务委托给专业机构。登记机构按约记录份额变化，管理人仍要选择并监督服务方；托管人履行托管职责，投资者按基金文件享有相应权利。"],focus:"判断一个行为由谁负责时，查看法律规定、基金合同、服务协议和实际授权，不要只看机构名称。",pit:["托管人不是基金投资决策人。","登记、估值等服务机构不等于基金管理人。","管理人委托部分服务不代表法定管理责任自动转移。"],summary:["投资者、管理人、托管人与服务机构各有角色。","投资管理、财产托管和运营服务需要区分。","外包服务仍需管理人履行选择、监督等责任。"],qs:[
+{q:"基金管理人把份额登记服务委托给外部机构后，管理人还需要做什么？",o:["遴选、授权并持续监督服务机构，履行自身管理责任","把所有法定责任一并转给服务商","停止向投资者提供信息","让托管人代替服务商完成全部登记"],ok:0,why:"服务外包不自动免除管理人应承担的职责；管理人仍需适当遴选、授权和监督。"},
+{q:"基金托管人与管理人的职责如何区分？",o:["管理人负责投资管理，托管人按规定履行基金财产托管等职责","托管人负责全部投资决策，管理人只保管资产","两者职责完全相同，可互相替代","两者都负责保证投资收益"],ok:0,why:"投资管理和基金财产托管是不同职责，二者都不是收益保证人。"},
+{q:"投资者最核心的身份与权利基础是什么？",o:["提供资金并按基金法律文件享有份额权利","替管理人执行日常投资决策","对底层每项资产拥有直接处分权","成为托管银行的股东"],ok:0,why:"投资者依据基金文件持有份额并享有相应权利；日常投资管理由管理人按约履行。"}]}
+]};
 const TERMS=[
 ["货币","货币是被普遍接受的支付和计价工具，也可用于储藏价值。把钱存下、借出或用于投资，会进入不同的金融关系。","你用 100 元买日用品是在支付；把暂时不用的钱存入银行，则把资金交给金融体系安排。"],
 ["资金","在金融学习里，资金通常指可以用于消费、生产、借贷或投资的货币资源。资金会从暂时有余的一方流向当前需要的一方。","家庭有暂时闲置的储蓄，企业有扩建厂房的资金需求，两者之间可以通过金融体系建立联系。"],
@@ -243,7 +283,7 @@ const FORMULAS=[
 ["DPI / RVPI / TVPI","DPI=累计已分配÷累计实缴；RVPI=剩余估值÷累计实缴；TVPI=DPI+RVPI","DPI是已回款，RVPI是未退出估值，TVPI合计两者；未实现估值不是现金。"],
 ["投前与投后估值","投后估值=投前估值+新增投资；新股比例≈投资额÷投后估值","只适用于简化无其他股本调整的情形。条款、期权池、可转证券和多轮交割会改变结果。"]
 ];
-function blankStudyState(){return{course:0,chapter:0,tab:"home",seen:{},donePoints:{},quizAnswers:{},studyRecords:[],reviewDates:{},studiedOn:{},dailyPlans:{}}}
+function blankStudyState(){return{course:0,chapter:0,tab:"home",seen:{},donePoints:{},quizAnswers:{},lessonSteps:{},studyRecords:[],reviewDates:{},studiedOn:{},dailyPlans:{}}}
 let state=blankStudyState();try{state=Object.assign(state,JSON.parse(localStorage.getItem("fund-study-course-v2")||"{}"))}catch(e){}
 function persistLocalState(){try{localStorage.setItem("fund-study-course-v2",JSON.stringify(state))}catch(e){}}
 function save(){persistLocalState()}
@@ -259,6 +299,7 @@ function normalizeState(){
  state.seen=state.seen&&typeof state.seen==="object"?state.seen:{};
  state.donePoints=state.donePoints&&typeof state.donePoints==="object"?state.donePoints:{};
  state.quizAnswers=state.quizAnswers&&typeof state.quizAnswers==="object"?state.quizAnswers:{};
+ state.lessonSteps=state.lessonSteps&&typeof state.lessonSteps==="object"?state.lessonSteps:{};
  state.studyRecords=Array.isArray(state.studyRecords)?state.studyRecords:[];
  state.reviewDates=state.reviewDates&&typeof state.reviewDates==="object"?state.reviewDates:{};
  state.studiedOn=state.studiedOn&&typeof state.studiedOn==="object"?state.studiedOn:{};
@@ -284,7 +325,7 @@ function ensureTodayPlan(){
 function startPlanItem(key,kind){
  const p=pointFromKey(key);if(!p)return;
  state.course=p.course;state.chapter=p.chapter;state.point=p.point;state.tab="course";
- if(kind==="复习")delete state.quizAnswers[key];
+ if(kind==="复习"){delete state.quizAnswers[key];state.lessonSteps[key]=0}
  save();render();
 }
 function todayRecords(){const d=chinaDate();return state.studyRecords.filter(x=>x.date===d)}
@@ -340,24 +381,39 @@ function jumpSearchFormula(i){state.tab="refs";save();render();setTimeout(()=>do
 function chapterView(){
  const c=current(),course=COURSES[state.course],s=chapterStats(state.course,state.chapter),units=c.units||[];
  const cards=units.map((u,i)=>'<button type="button" class="point-card" onclick="openPoint('+i+')"><span class="point-row"><b>知识点 '+(i+1)+' · '+esc(u[0])+'</b><span class="point-badge">'+(state.donePoints[pointKey(state.course,state.chapter,i)]?"已学":"进入学习")+'</span></span><p>'+esc(u[1])+'</p></button>').join("");
- return '<section class="panel chapter-head"><div><div class="eyebrow">'+esc(course.name)+' · 第 '+(state.chapter+1)+' 章 / '+course.chapters.length+' 章</div><h2>'+esc(c.title)+'</h2><p class="lead">'+esc(c.intro)+'</p>'+(c.sourceNote?'<p class="smallnote">'+esc(c.sourceNote)+'</p>':'')+'<div class="chapter-status"><span>本章知识点进度</span><span>'+s.done+' / '+s.total+' · '+s.pct+'%</span></div><div class="progressline large"><span style="width:'+s.pct+'%"></span></div></div><div><h3>本章知识点</h3><p class="smallnote">点开任一知识点，按“含义解释 → 场景重现 → 选择题巩固”完成学习。</p><div class="point-list">'+cards+'</div></div><div class="case"><b>本章场景预览</b><br>'+esc(c.example)+'</div><div class="actions"><button type="button" class="secondary" onclick="previousChapter()">上一章</button><button type="button" class="nextbtn" onclick="nextChapter()">'+(state.chapter===course.chapters.length-1?(state.course===COURSES.length-1?"回到第一章":"进入下一科"):"下一章")+' →</button></div></section>';
+ return '<section class="panel chapter-head"><div><div class="eyebrow">'+esc(course.name)+' · 第 '+(state.chapter+1)+' 章 / '+course.chapters.length+' 章</div><h2>'+esc(c.title)+'</h2><p class="lead">'+esc(c.intro)+'</p>'+(c.sourceNote?'<p class="smallnote">'+esc(c.sourceNote)+'</p>':'')+'<div class="chapter-status"><span>本章知识点进度</span><span>'+s.done+' / '+s.total+' · '+s.pct+'%</span></div><div class="progressline large"><span style="width:'+s.pct+'%"></span></div></div><div><h3>本章知识点</h3><p class="smallnote">点开任一知识点，依次学习“概念 → 场景 → 小测 → 小结”。完成小测并记录掌握程度后，会计入学习进度。</p><div class="point-list">'+cards+'</div></div><div class="case"><b>本章场景预览</b><br>'+esc(c.example)+'</div><div class="actions"><button type="button" class="secondary" onclick="previousChapter()">上一章</button><button type="button" class="nextbtn" onclick="nextChapter()">'+(state.chapter===course.chapters.length-1?(state.course===COURSES.length-1?"回到第一章":"进入下一科"):"下一章")+' →</button></div></section>';
 }
-function quizOptions(c,pi){
- const units=c.units||[],pool=units.map((u,i)=>({text:u[1],correct:i===pi,index:i}));
- const a=[pool[pi],...pool.filter(x=>x.index!==pi).sort((x,y)=>Math.abs(x.index-pi)-Math.abs(y.index-pi)).slice(0,3)];
- let seed=(state.course+1)*7919+(state.chapter+1)*313+(pi+1)*97;
- for(let i=a.length-1;i>0;i--){seed=(seed*9301+49297)%233280;const j=seed%(i+1);[a[i],a[j]]=[a[j],a[i]]}
- return a;
+function lessonData(c,pi){
+ const hand=DEEP_LESSONS[state.course+":"+state.chapter],authored=hand&&hand[pi];if(authored)return authored;
+ const u=c.units[pi],pairs=mapPairs(c),branch=pairs[pi]||[u[0],u[1]],scene=c.scenes&&c.scenes[pi]?c.scenes[pi]:c.example;
+ const options=pairs.map((p,i)=>({text:p[0],correct:i===pi}));
+ return{formal:u[1],plain:"把这个知识点放回本章主线里看："+(branch[1]||c.intro),relation:branch[1]||c.intro,scenes:[scene],focus:branch[1]||u[1],pit:(c.trap||"").split(/[；;。]/).map(x=>x.trim()).filter(Boolean),summary:[u[1],branch[1]||c.intro],source:c.sourceNote||"依据本章课程内容整理。",qs:[{q:"结合本章场景，学习“"+u[0]+"”时，最应关注哪条线索？",o:options.map(x=>x.text),ok:Math.min(pi,options.length-1),why:(branch[1]||u[1])+" 其他选项对应本章的相邻知识点。"}]};
 }
-function answerPoint(optionIndex){
- if(state.point===null)return;const key=pointKey(state.course,state.chapter,state.point);if(state.quizAnswers[key]!==undefined)return;
- const options=quizOptions(current(),state.point),picked=options[optionIndex];if(!picked)return;
- const today=chinaDate(),correct=!!picked.correct,u=current().units[state.point];
- state.quizAnswers[key]=optionIndex;state.donePoints[key]=true;state.reviewDates[key]=shiftDate(today,correct?3:1);
+function lessonQuestions(c,pi){
+ const d=lessonData(c,pi);return d.qs.map((q,qi)=>{
+  const options=q.o.map((text,i)=>({text,correct:i===q.ok}));let seed=(state.course+1)*7919+(state.chapter+1)*313+(pi+1)*97+(qi+1)*41;
+  for(let i=options.length-1;i>0;i--){seed=(seed*9301+49297)%233280;const j=seed%(i+1);[options[i],options[j]]=[options[j],options[i]]}
+  return{q:q.q,options,why:q.why};
+ });
+}
+function setLessonStep(step){
+ if(state.point===null)return;const key=pointKey(state.course,state.chapter,state.point),qs=lessonQuestions(current(),state.point),entry=state.quizAnswers[key],answers=entry&&Array.isArray(entry.answers)?entry.answers:[];
+ if(step===3&&qs.some((_,i)=>!answers[i])){alert("先完成本课选择题，再查看小结。");return}
+ state.lessonSteps[key]=Math.max(0,Math.min(3,step));save();render();
+}
+function answerPoint(questionIndex,optionIndex){
+ if(state.point===null)return;const key=pointKey(state.course,state.chapter,state.point),qs=lessonQuestions(current(),state.point),question=qs[questionIndex];if(!question)return;
+ let entry=state.quizAnswers[key];if(!entry||typeof entry!=="object"||!Array.isArray(entry.answers))entry={answers:[]};if(entry.answers[questionIndex])return;
+ const picked=question.options[optionIndex];if(!picked)return;entry.answers[questionIndex]={choice:optionIndex,correct:!!picked.correct};state.quizAnswers[key]=entry;save();render();
+}
+function rateLesson(rating){
+ if(state.point===null)return;const key=pointKey(state.course,state.chapter,state.point),qs=lessonQuestions(current(),state.point),entry=state.quizAnswers[key],answers=entry&&Array.isArray(entry.answers)?entry.answers:[];
+ if(qs.some((_,i)=>!answers[i])){alert("先完成本课选择题，再记录掌握程度。");return}
+ const today=chinaDate(),score=answers.filter(x=>x.correct).length,u=current().units[state.point],correct=score===qs.length;
+ entry.rating=rating;state.quizAnswers[key]=entry;state.donePoints[key]=true;state.reviewDates[key]=shiftDate(today,rating===2?(correct?7:3):rating===1?2:1);
  state.studiedOn[today]=state.studiedOn[today]||{};state.studiedOn[today][key]=true;
- state.studyRecords.push({date:today,key,correct,course:state.course,chapter:state.chapter,point:state.point,title:u[0],at:new Date().toISOString()});
- if(state.studyRecords.length>2000)state.studyRecords=state.studyRecords.slice(-2000);
- save();render();
+ if(!entry.recorded){state.studyRecords.push({date:today,key,correct,score,total:qs.length,rating,course:state.course,chapter:state.chapter,point:state.point,title:u[0],at:new Date().toISOString()});entry.recorded=true;state.quizAnswers[key]=entry}
+ if(state.studyRecords.length>2000)state.studyRecords=state.studyRecords.slice(-2000);save();render();
 }
 function exportProgress(){
  const blob=new Blob([JSON.stringify({format:"fund-workbench-backup-v1",exportedAt:new Date().toISOString(),state},null,2)],{type:"application/json"});
@@ -368,10 +424,15 @@ function importProgress(input){
  const reader=new FileReader();reader.onload=function(){try{const data=JSON.parse(reader.result),saved=data.state||data;if(!saved||typeof saved!=="object"||!saved.donePoints||!saved.studyRecords)throw new Error("备份文件格式不正确");state=Object.assign({course:0,chapter:0,tab:"home",seen:{},donePoints:{},quizAnswers:{},studyRecords:[],reviewDates:{},studiedOn:{},dailyPlans:{}},saved);normalizeState();state.lastOpenDate=chinaDate();state.tab="home";ensureTodayPlan();save();render();alert("学习进度和记录已恢复。")}catch(e){alert("未能读取这份备份，请选择由工作台导出的 JSON 文件。")}};reader.readAsText(file);input.value="";
 }
 function pointView(){
- const c=current(),course=COURSES[state.course],i=state.point,u=c.units[i],s=chapterStats(state.course,state.chapter),key=pointKey(state.course,state.chapter,i),options=quizOptions(c,i),chosen=state.quizAnswers[key],pairs=mapPairs(c),branch=pairs[i]||[u[0],u[1]],scene=c.scenes&&c.scenes[i]?c.scenes[i]:c.example,answered=chosen!==undefined,correct=answered&&options[chosen]&&options[chosen].correct;
- const opts=options.map((o,j)=>'<button type="button" class="quiz-option'+(answered&&o.correct?" correct":"")+(answered&&j===chosen&&!o.correct?" incorrect":"")+'" '+(answered?"disabled":"")+' onclick="answerPoint('+j+')"><span class="quiz-letter">'+String.fromCharCode(65+j)+'</span><span>'+esc(o.text)+'</span></button>').join("");
- const feedback=answered?'<div class="quiz-feedback"><b>'+(correct?"答对了":"再看一遍这个定义")+'</b>'+esc(u[1])+(c.trap?'<p><b>容易混淆：</b>'+esc(c.trap)+'</p>':'')+'</div>':'<p class="smallnote">选完后会显示判断结果和解释；答错也可以继续学习。</p>';
- return '<section class="panel point-detail"><div><p class="breadcrumb">'+esc(course.name)+'　›　第 '+(state.chapter+1)+' 章 '+esc(c.title)+'　›　知识点 '+(i+1)+'</p><div class="eyebrow">含义解释 · 场景重现 · 选择题巩固</div><h2>'+esc(u[0])+'</h2><div class="chapter-status"><span>本章进度</span><span>'+s.done+' / '+s.total+' 个知识点</span></div><div class="progressline large"><span style="width:'+s.pct+'%"></span></div></div><article class="definition-card"><h3>① 含义解释</h3><p class="definition-text">'+esc(u[1])+'</p><div class="scenario-focus"><b>放在本章主线里：</b>'+esc(c.intro)+'</div></article><article class="scenario-card"><h3>② 场景重现</h3><p class="scenario-text">'+esc(scene)+'</p><div class="scenario-focus"><b>本知识点在场景中的观察角度：'+esc(branch[0])+'</b><br>'+esc(branch[1])+'</div></article><article class="quiz-card"><h3>③ 选择题巩固</h3><p>关于“'+esc(u[0])+'”，下列哪项理解最准确？</p><div class="quiz-options">'+opts+'</div>'+feedback+'</article><div class="detail-actions"><button type="button" class="secondary" onclick="backToChapter()">返回本章知识点</button><button type="button" class="nextbtn" onclick="nextPoint()">'+(i<c.units.length-1?"下一个知识点":"回到本章")+' →</button></div></section>';
+ const c=current(),course=COURSES[state.course],i=state.point,u=c.units[i],s=chapterStats(state.course,state.chapter),key=pointKey(state.course,state.chapter,i),d=lessonData(c,i),qs=lessonQuestions(c,i),entry=state.quizAnswers[key],answers=entry&&Array.isArray(entry.answers)?entry.answers:[],step=Math.max(0,Math.min(3,Number(state.lessonSteps[key])||0)),answered=answers.filter(Boolean).length,score=answers.filter(x=>x&&x.correct).length;
+ const steps=["概念","场景","小测","小结"],stepNav='<div class="lesson-steps">'+steps.map((x,j)=>'<button type="button" class="lesson-step '+(j===step?"active":"")+' '+(j===3&&answered<qs.length?"locked":"")+'" '+(j===3&&answered<qs.length?"disabled":"")+' onclick="setLessonStep('+j+')"><span>0'+(j+1)+'</span>'+x+'</button>').join("")+'</div>';
+ let body="";
+ if(step===0)body='<article class="definition-card"><div class="lesson-label">正式定义</div><p class="definition-text">'+esc(d.formal)+'</p></article><article class="definition-card plain-card"><div class="lesson-label">白话理解</div><p class="definition-text">'+esc(d.plain)+'</p></article><article class="scenario-card"><div class="lesson-label">这条知识在本章里的位置</div><p>'+esc(d.relation)+'</p></article>';
+ else if(step===1)body='<article class="scenario-card"><div class="lesson-label">把概念放进具体情境</div>'+d.scenes.map((x,j)=>'<div class="scene-example"><b>场景 '+(j+1)+'</b><p>'+esc(x)+'</p></div>').join("")+'<div class="scenario-focus"><b>怎么看：</b>'+esc(d.focus)+'</div></article>'+(d.pit.length?'<article class="warning-card"><div class="lesson-label">容易混淆的地方</div><ul>'+d.pit.map(x=>'<li>'+esc(x)+'</li>').join("")+'</ul></article>':'')+(d.source?'<p class="smallnote lesson-source">课程依据：'+esc(d.source)+'</p>':'');
+ else if(step===2)body=qs.map((q,qi)=>{const a=answers[qi],opts=q.options.map((o,j)=>'<button type="button" class="quiz-option'+(a&&o.correct?" correct":"")+(a&&a.choice===j&&!o.correct?" incorrect":"")+'" '+(a?"disabled":"")+' onclick="answerPoint('+qi+','+j+')"><span class="quiz-letter">'+String.fromCharCode(65+j)+'</span><span>'+esc(o.text)+'</span></button>').join("");return '<article class="quiz-card"><div class="lesson-label">第 '+(qi+1)+' 题 · '+(a?(a.correct?"已答对":"已完成") :"请选择一项")+'</div><p class="question-text">'+esc(q.q)+'</p><div class="quiz-options">'+opts+'</div>'+(a?'<div class="quiz-feedback"><b>'+(a.correct?"答对了":"再看一次关键区别")+'</b><p>'+esc(q.why)+'</p></div>':'')+'</article>'}).join("")+'<p class="smallnote">完成 '+answered+' / '+qs.length+' 题后，就可以查看小结并记录掌握程度。</p>';
+ else body='<article class="summary-card"><div class="lesson-label">本课小结</div><ul class="summary-list">'+d.summary.map(x=>'<li>'+esc(x)+'</li>').join("")+'</ul><div class="summary-score">本次选择题：<b>'+score+' / '+qs.length</b></div>'+(entry&&entry.rating!==undefined?'<p class="smallnote">已记录掌握程度：'+(entry.rating===2?"记得":entry.rating===1?"模糊":"忘了")+' · 下次复习 '+esc(state.reviewDates[key]||"")+'</p>':'<p>凭你现在的感觉记录一次，系统会安排后续复习：</p>')+'<div class="rating-buttons"><button type="button" class="secondary" onclick="rateLesson(2)">记得</button><button type="button" class="secondary" onclick="rateLesson(1)">模糊</button><button type="button" class="secondary" onclick="rateLesson(0)">忘了</button></div></article>';
+ const nextDisabled=step===2&&answered<qs.length;
+ return '<section class="panel point-detail"><div><p class="breadcrumb">'+esc(course.name)+'　›　第 '+(state.chapter+1)+' 章 '+esc(c.title)+'　›　知识点 '+(i+1)+'</p><div class="eyebrow">定义讲清楚 · 场景看得懂 · 选择题检验 · 小结留记忆</div><h2>'+esc(u[0])+'</h2><div class="chapter-status"><span>本章知识点进度</span><span>'+s.done+' / '+s.total+' · '+s.pct+'%</span></div><div class="progressline large"><span style="width:'+s.pct+'%"></span></div></div>'+stepNav+body+'<div class="detail-actions"><button type="button" class="secondary" onclick="'+(step===0?'backToChapter()':'setLessonStep('+(step-1)+')')+'">'+(step===0?"返回本章":"上一步")+'</button><button type="button" class="nextbtn" '+(nextDisabled?"disabled":"")+' onclick="'+(step<3?'setLessonStep('+(step+1)+')':'nextPoint()')+'">'+(step<3?(step===2?"查看小结":"下一步"):(i<c.units.length-1?"下一个知识点":"回到本章"))+' →</button></div></section>';
 }
 function lessonView(){return state.point===null?chapterView():pointView()}
 function mapView(){
@@ -381,7 +442,7 @@ function mapView(){
 }
 function homeView(){
  const courseCards=COURSES.map((c,i)=>{const s=subjectStats(i);return '<article class="homecard"><div class="eyebrow">'+esc(c.name)+' · '+c.chapters.length+' 章</div><h3>'+esc(c.title)+'</h3><p>'+esc(c.subtitle)+'</p><div class="chapter-status"><span>知识点进度</span><span>'+s.done+'/'+s.total+' · '+s.pct+'%</span></div><div class="progressline large"><span style="width:'+s.pct+'%"></span></div><button type="button" class="primary" onclick="chooseCourse('+i+')">进入科目 →</button></article>'}).join("");
- return '<section class="panel home-panel"><div class="eyebrow">选择学习科目</div><div class="homegrid">'+courseCards+'</div>'+dailyPlanView()+'<h3>学习方式</h3><p>按科目顺序学习：先进入章节查看全部知识点，再逐个学习含义解释、场景重现和选择题。进度与答题结果会自动保存。</p><div class="backup-panel"><b>学习档案与设备</b><p>登录后，学习计划、答题结果和进度会自动保存到云端；本机也会保留一份缓存。仍可导出备份作额外留存。</p><div class="backup-actions"><button type="button" class="secondary" onclick="exportProgress()">导出学习记录</button><label class="secondary backup-import">导入备份<input type="file" accept="application/json,.json" onchange="importProgress(this)"></label></div></div><div class="actions"><button type="button" class="secondary" onclick="goTab(\'map\')">看当前章节思维导图</button><button type="button" class="nextbtn" onclick="chooseCourse(0)">从第一科开始 →</button></div></section>';
+ return '<section class="panel home-panel"><div class="eyebrow">选择学习科目</div><div class="homegrid">'+courseCards+'</div>'+dailyPlanView()+'<h3>学习方式</h3><p>进入章节后会看到本章全部知识点。每个知识点按“正式定义 → 白话理解 → 场景分析 → 选择题 → 小结与复习”学习；进度和记录保存在当前浏览器。</p><div class="backup-panel"><b>学习档案与设备</b><p>学习进度、计划和答题记录会自动保存在当前浏览器。换设备或清除浏览器数据前，可以先导出备份。</p><div class="backup-actions"><button type="button" class="secondary" onclick="exportProgress()">导出学习记录</button><label class="secondary backup-import">导入备份<input type="file" accept="application/json,.json" onchange="importProgress(this)"></label></div></div><div class="actions"><button type="button" class="secondary" onclick="goTab(\'map\')">看当前章节思维导图</button><button type="button" class="nextbtn" onclick="chooseCourse(0)">从第一科开始 →</button></div></section>';
 }
 function render(){
  renderSide();
