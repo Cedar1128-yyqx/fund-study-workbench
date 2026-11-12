@@ -82,10 +82,115 @@ body{line-height:1.75}.hero p,.lead,.concept p,.term p,.formula p,.mapdesc,.chap
 .lesson-steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin:3px 0 5px}.lesson-step{display:flex;align-items:center;justify-content:center;gap:7px;min-height:42px;padding:8px 10px;border:1px solid rgba(0,0,0,.1);border-radius:999px;background:rgba(255,255,255,.4);color:var(--muted);font-size:13px}.lesson-step span{font-size:10px;letter-spacing:.08em}.lesson-step.active{background:linear-gradient(180deg,#626260,#363634);border-color:#363634;color:white}.lesson-step.locked{opacity:.48;cursor:not-allowed}.lesson-label{margin:0 0 8px;color:var(--muted);font-size:11px;font-weight:700;letter-spacing:.1em}.plain-card{border-left:3px solid rgba(0,0,0,.35)}.scene-example{padding:12px 14px;margin:8px 0;border-radius:15px;background:rgba(0,0,0,.035);line-height:1.82}.scene-example p{margin:4px 0}.warning-card,.summary-card{padding:20px clamp(17px,2.5vw,26px);border:1px solid rgba(255,255,255,.68);border-radius:20px;background:var(--sheen),rgba(255,255,255,.42);box-shadow:inset 0 1px 0 rgba(255,255,255,.65)}.warning-card{border-left:3px solid #98703b}.warning-card ul,.summary-list{margin:6px 0;padding-left:21px;line-height:1.9}.lesson-source{margin:0 3px}.question-text{font-size:16px;font-weight:650}.summary-score{margin-top:14px;padding:11px 13px;border-radius:14px;background:rgba(0,0,0,.04)}.rating-buttons{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.rating-buttons button{min-width:80px}.detail-actions button:disabled{opacity:.42;cursor:not-allowed}
 @media(max-width:560px){.lesson-steps{gap:5px}.lesson-step{min-height:39px;padding:7px 4px;gap:4px;font-size:11px}.warning-card,.summary-card{border-radius:17px;padding:15px}.rating-buttons{display:grid;grid-template-columns:repeat(3,1fr)}.rating-buttons button{min-width:0;padding:9px 7px}}
 @media(prefers-color-scheme:dark){.lesson-step,.scene-example,.summary-score{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.14);color:#d1d1ca}.lesson-step.active{background:linear-gradient(180deg,#626260,#363634);color:white}.warning-card,.summary-card{background:var(--sheen),rgba(255,255,255,.055);border-color:rgba(255,255,255,.14)}.plain-card{border-left-color:#c4c4bd}.scene-example{background:rgba(255,255,255,.045)}}
+/* Capital Life uses the workbench's neutral steel palette. */
+#capital-life[hidden], #appShell[hidden] { display: none; }
+#capital-life {
+  --life-ink: #f0efeb;
+  --life-muted: #c4c4be;
+  --life-line: rgba(237, 237, 228, .2);
+  --life-surface: rgba(245, 245, 239, .07);
+  color: var(--life-ink);
+  background: linear-gradient(125deg, #252628, #393a3b 43%, #1d1e20 78%);
+  min-height: 100vh;
+}
+.life-wrap { max-width: 1200px; }
+.life-top { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.life-top h1 { margin: 0; font-size: clamp(2.2rem, 5vw, 3.6rem); line-height: 1.15; }
+.life-wrap h1, .life-wrap h2, .life-metrics strong {
+  font-family: Newsreader, "Songti SC", "Noto Serif SC", Georgia, serif;
+}
+.life-wrap h2 { font-size: clamp(1.4rem, 3vw, 2.1rem); margin: 0 0 .4rem; line-height: 1.25; }
+.life-wrap h3 { margin: 0 0 .45rem; font-size: 1.05rem; }
+.life-wrap p { margin: 0 0 .8rem; }
+.life-wrap p:last-child { margin-bottom: 0; }
+.life-actions { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+.life-wrap button, .life-wrap input, .life-wrap select {
+  min-height: 44px;
+  padding: 8px 14px;
+  color: var(--life-ink);
+  background: #343536;
+  border: 1px solid var(--life-line);
+  border-radius: 12px;
+}
+.life-wrap button:hover:not(:disabled) { background: #4b4c4e; }
+.life-wrap button:disabled { cursor: default; opacity: .65; }
+.life-wrap button.life-primary, .life-nav button[aria-current="page"] {
+  color: #1b1b1b;
+  background: linear-gradient(160deg, #f0efea, #b9babb);
+  font-weight: 700;
+}
+.life-wrap button.life-primary:hover:not(:disabled), .life-nav button[aria-current="page"]:hover { background: #fff; }
+.life-wrap :focus-visible { outline: 2px solid #f1d299; outline-offset: 3px; }
+.life-muted, .life-save-state { color: var(--life-muted); font-size: .9rem; }
+.life-save-state { min-height: 1.7em; text-align: right; margin: 0 0 14px; }
+.life-nav { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin: 16px 0; }
+.life-grid { display: grid; grid-template-columns: minmax(0, 1.65fr) minmax(0, 1fr); gap: 16px; }
+.life-grid > *, .life-card { min-width: 0; }
+.life-card {
+  padding: clamp(16px, 3vw, 26px);
+  border: 1px solid var(--life-line);
+  border-radius: 18px;
+  background: linear-gradient(130deg, rgba(255,255,255,.1), transparent 50%), var(--life-surface);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 12px 34px rgba(0,0,0,.14);
+}
+.life-stack { display: grid; gap: 14px; align-content: start; }
+.life-room { position: relative; overflow: hidden; isolation: isolate; min-height: 160px; display: flex; align-items: end; }
+.life-room::before, .life-room::after { content: ""; position: absolute; pointer-events: none; z-index: -1; }
+.life-room::before {
+  inset: 0 0 0 36%;
+  background: linear-gradient(90deg, #28292b 0%, transparent 68%),
+    repeating-linear-gradient(90deg, #161719 0 3px, transparent 3px 46px),
+    linear-gradient(120deg, #3f4144, #727474 58%, #282a2b);
+}
+.life-room::after {
+  right: 6%; bottom: 16%; width: 42%; height: 30%;
+  transform: skewX(-23deg); border: 1px solid #8c8d89;
+  border-radius: 6px; background: linear-gradient(153deg, #6a6b69, #2a2b2d 65%);
+  box-shadow: 3px 12px 0 #232426, 8px 25px 22px #161719;
+}
+.life-room--firm::after { right: 10%; bottom: 0; width: 28%; height: 56%; transform: none; border-bottom: 0; }
+.life-room--office::after { width: 33%; transform: skewX(-16deg); }
+.life-room--meeting::after { border-radius: 50%; }
+.life-room > div {
+  position: relative;
+  padding: 12px 16px;
+  border: 1px solid var(--life-line);
+  border-radius: 12px;
+  background: rgba(27,28,29,.91);
+}
+.life-room h2 { margin: 0; }
+.life-metrics { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; margin: 0; }
+.life-metrics > div { padding: 9px 12px; border: 1px solid var(--life-line); border-radius: 12px; }
+.life-metrics dt { font-size: .85rem; color: var(--life-muted); }
+.life-metrics dd { margin: 0; }
+.life-metrics strong { font-size: 1.65rem; font-variant-numeric: tabular-nums; }
+.life-form, .life-choices { display: grid; gap: 10px; }
+.life-form label { display: grid; gap: 4px; }
+.life-form input, .life-form select { width: 100%; }
+.life-form button { justify-self: start; }
+.life-task { padding-top: 12px; margin-top: 12px; border-top: 1px solid var(--life-line); }
+.life-wrap .life-choices button { text-align: left; }
+.life-choices button[data-result="correct"] { border-color: #c8c9b3; opacity: 1; }
+.life-choices button[data-result="incorrect"] { border-color: #e8ab9e; opacity: 1; }
+.life-feedback { margin-top: 14px; padding: 14px; border-radius: 10px; border: 1px solid var(--life-line); background: #292a2c; }
+.life-source { color: var(--life-muted); font-size: .85rem; }
+.life-workbench { margin-top: 16px; overflow-wrap: anywhere; }
+.life-workbench .plan-row { grid-template-columns: minmax(0, 1fr) auto; }
+.life-legacy-data { display: block; width: 100%; min-height: 105px; margin: 10px 0; color: var(--ink); background: var(--paper); border: 1px solid var(--line); padding: 8px; border-radius: 8px; }
+@media(max-width: 760px) {
+  .life-grid { grid-template-columns: minmax(0, 1fr); }
+  .life-save-state { text-align: left; }
+}
+@media(max-width: 410px) {
+  .life-workbench .plan-row { grid-template-columns: minmax(0, 1fr); }
+  .life-workbench .plan-row > * { grid-column: auto; }
+  .life-nav button { padding-inline: 5px; }
+}
 </style></head>
 <body>
 <div id="appShell" class="wrap">
-<header><div class="brand">基金从业学习工作台<small>零基础课程 · 三科循序学习</small></div><div class="header-tools"><span id="syncBadge" class="sync-badge">进度自动保存在此浏览器</span><span class="tag">按 2026 年度大纲更新</span></div></header>
+<header><div class="brand">基金从业学习工作台<small>零基础课程 · 三科循序学习</small></div><div class="header-tools"><button type="button" class="primary" id="life-launch" data-life="launch">资本人生</button><span id="syncBadge" class="sync-badge">进度自动保存在此浏览器</span><span class="tag">按 2026 年度大纲更新</span></div></header>
 <div class="layout"><aside class="side"><div class="sidebox">
 <div class="navtabs"><button type="button" data-tab="home">路线</button><button type="button" data-tab="course" class="active">课程</button><button type="button" data-tab="map">思维导图</button><button type="button" data-tab="refs">术语与来源</button></div>
 <input id="search" class="search" placeholder="搜全科章节、知识点或术语" oninput="filterChapters()">
@@ -93,6 +198,7 @@ body{line-height:1.75}.hero p,.lead,.concept p,.term p,.formula p,.mapdesc,.chap
 <div id="courseLabel" class="label">学习顺序</div><div id="courses" class="courses"></div><div id="chapterLabel" class="label">本科学章节</div><div id="chapters" class="chapter-list"></div>
 </div></aside><main id="main" class="main"></main></div>
 </div>
+<main id="capital-life" hidden></main>
 <script>
 const COURSES=[
 {name:"科目一",title:"基金基础知识与法律法规",subtitle:"先打地基：市场、基金、规则与职业责任",chapters:[
@@ -455,7 +561,7 @@ function mapView(){
 }
 function homeView(){
  const courseCards=COURSES.map((c,i)=>{const s=subjectStats(i);return '<article class="homecard"><div class="eyebrow">'+esc(c.name)+' · '+c.chapters.length+' 章</div><h3>'+esc(c.title)+'</h3><p>'+esc(c.subtitle)+'</p><div class="chapter-status"><span>知识点进度</span><span>'+s.done+'/'+s.total+' · '+s.pct+'%</span></div><div class="progressline large"><span style="width:'+s.pct+'%"></span></div><button type="button" class="primary" onclick="chooseCourse('+i+')">进入科目 →</button></article>'}).join("");
- return '<section class="panel home-panel"><div class="eyebrow">选择学习科目</div><div class="homegrid">'+courseCards+'</div>'+dailyPlanView()+'<h3>学习方式</h3><p>进入章节后会看到本章全部知识点。每个知识点按“正式定义 → 白话理解 → 场景分析 → 选择题 → 小结与复习”学习；进度和记录保存在当前浏览器。</p><div class="backup-panel"><b>学习档案与设备</b><p>学习进度、计划和答题记录会自动保存在当前浏览器。换设备或清除浏览器数据前，可以先导出备份。</p><div class="backup-actions"><button type="button" class="secondary" onclick="exportProgress()">导出学习记录</button><label class="secondary backup-import">导入备份<input type="file" accept="application/json,.json" onchange="importProgress(this)"></label></div></div><div class="actions"><button type="button" class="secondary" onclick="goTab(\'map\')">看当前章节思维导图</button><button type="button" class="nextbtn" onclick="chooseCourse(0)">从第一科开始 →</button></div></section>';
+ return '<section class="panel home-panel"><div class="eyebrow">选择学习科目</div><div class="homegrid">'+courseCards+'</div>'+dailyPlanView()+CapitalLife.workbench()+'<h3>学习方式</h3><p>进入章节后会看到本章全部知识点。每个知识点按“正式定义 → 白话理解 → 场景分析 → 选择题 → 小结与复习”学习；进度和记录保存在当前浏览器。</p><div class="backup-panel"><b>学习档案与设备</b><p>学习进度、计划和答题记录会自动保存在当前浏览器。换设备或清除浏览器数据前，可以先导出备份。</p><div class="backup-actions"><button type="button" class="secondary" onclick="exportProgress()">导出学习记录</button><label class="secondary backup-import">导入备份<input type="file" accept="application/json,.json" onchange="importProgress(this)"></label></div></div><div class="actions"><button type="button" class="secondary" onclick="goTab(\'map\')">看当前章节思维导图</button><button type="button" class="nextbtn" onclick="chooseCourse(0)">从第一科开始 →</button></div></section>';
 }
 function render(){
  renderSide();
@@ -466,6 +572,542 @@ function render(){
  else if(state.tab==="refs")m.innerHTML=refsView();
  const search=document.getElementById("search");if(search)search.value="";const results=document.getElementById("searchResults");if(results){results.innerHTML="";results.classList.add("hide")}document.getElementById("courseLabel").classList.remove("hide");document.getElementById("chapterLabel").classList.remove("hide");document.getElementById("courses").classList.remove("hide");document.getElementById("chapters").classList.remove("hide");
 }
+const CapitalLife = (() => {
+  const storageKey = "capital-life.v1";
+  const legacyKey = "fundq.v1";
+  const rooms = {
+    firm: ["投资机构", "远岬创投 · 一号基金"],
+    office: ["办公室", "投资团队 · 导师任务"],
+    meeting: ["项目会场", "机器人项目 · 投前会议"]
+  };
+  const backgrounds = ["工程研发", "财务分析", "产业研究"];
+  const funding = { pre: 10000, investment: 5000, available: 8000 };
+  const amount = value => new Intl.NumberFormat("zh-CN").format(value);
+  const ownership = (pre, investment) => (100 * investment / (pre + investment)).toFixed(2);
+  const valuationSource = "《股权投资基金》（2025）第五章第四节「交易文件」，印刷页 158（PDF 第 167 页）。";
+  const conflictSource = "《股权投资基金》（2025）第八章第二节「股权投资基金治理主要原则」，印刷页 266–268（PDF 第 271–273 页）。";
+
+  function valuationQuestion(pre, investment, review = false) {
+    const post = pre + investment;
+    const percent = ownership(pre, investment);
+    return {
+      prompt: review
+        ? `另一家初创公司投前估值 ${amount(pre)} 万元，同轮只有一笔 ${amount(investment)} 万元增资。无期权池和其他股本调整。投后估值和新投资方持股分别是多少？`
+        : "仅本基金以新增股份方式出资。无老股转让、期权池调整或其他同期投资。备忘录应写入哪组投后估值和持股比例？",
+      options: [
+        [`${amount(post)} 万元 · ${(100 * investment / pre).toFixed(2)}%`, "这个比例误用了投前估值作分母。"],
+        [`${amount(post)} 万元 · ${percent}%`, ""],
+        [`${amount(pre)} 万元 · ${percent}%`, "估值仍停在投前，漏加了本轮新增投资。"],
+        [`${amount(post)} 万元 · ${(100 - Number(percent)).toFixed(2)}%`, "这个比例属于本轮增资前的股东合计。"]
+      ],
+      correct: 1,
+      explanation: `投后估值 = ${amount(pre)} + ${amount(investment)} = ${amount(post)} 万元。本轮新投资方持股 = ${amount(investment)} ÷ ${amount(post)} ≈ ${percent}%。`
+    };
+  }
+
+  const conflictQuestion = {
+    prompt: "尽调发现远岬创投的实际控制人持有砺行机器人的股份。本案例基金合同将其列为关联交易，要求披露、独立审议，并让有利益冲突的委员回避。你应提交哪项建议？",
+    options: [
+      ["先按普通项目表决，交割后统一向 LP 报告。", "交割后的报告无法补齐合同规定的事前程序。"],
+      ["取得项目方书面承诺后，按原流程提交签约。", "项目方的承诺无法替代基金自己的审议与披露。"],
+      ["先披露关联关系，核查公允性，由无冲突成员审议。", ""],
+      ["有冲突的委员口头说明关系后，仍参加最终表决。", "口头说明无法替代合同明确要求的回避。"]
+    ],
+    correct: 2,
+    explanation: "识别和披露利益冲突，核查交易是否公允，再履行基金合同约定的决策程序。本案例还要求有冲突的委员回避，审议完成后方可推进交割。"
+  };
+
+  function conflictReview(attempt) {
+    const options = [
+      ["按普通交易审批，半年报中集中补充说明。", "事后补充说明无法替代约定的事前审议。"],
+      ["登记关联关系，核查公允性并由无冲突成员审议。", ""],
+      ["让双方管理团队联签，用签字代替独立审议。", "交易双方联签无法替代独立审议。"],
+      ["采用市场报价，原审批人继续参与表决。", "市场报价只能为定价提供参考，回避要求仍然适用。"]
+    ];
+    const offset = attempt % options.length;
+    return {
+      prompt: "基金拟向同一管理人管理的另一只基金购买一笔老股。基金合同明确要求事前披露与独立审议，冲突成员须回避。哪项做法符合约定？",
+      options: [...options.slice(offset), ...options.slice(0, offset)],
+      correct: (1 + options.length - offset) % options.length,
+      explanation: "基金之间的交易同样可能有利益冲突，应按合同披露，验证定价公允并落实回避与独立审议。"
+    };
+  }
+
+  const tasks = {
+    valuation: {
+      title: "核算机器人项目增资", point: "2:4:3", chapter: "s2c4", source: valuationSource,
+      story: valuationQuestion(funding.pre, funding.investment),
+      review: attempt => {
+        const cases = [[6000, 1500], [9000, 3000], [12000, 2000]];
+        return valuationQuestion(...cases[attempt % cases.length], true);
+      },
+      success: "导师接受了估值备忘录，投委会进入关联关系核查。",
+      failure: "导师退回了估值备忘录。项目仍待审，LP 信任下降。"
+    },
+    conflict: {
+      title: "处理关联交易", point: "2:7:2", chapter: "s2c7", source: conflictSource,
+      story: conflictQuestion, review: conflictReview,
+      success: "案例中的独立审议与披露流程已完成，模拟交割可以继续。",
+      failure: "合规负责人暂停项目，要求补齐程序。合规评分下降。"
+    }
+  };
+  const taskIds = Object.keys(tasks);
+  const emptyTask = () => ({ choice: null, errors: 0 });
+  const fresh = () => ({
+    version: 1, profile: null, room: "office", closed: false, feedback: null, savedAt: null,
+    decisions: { valuation: emptyTask(), conflict: emptyTask() }, mistakes: {}
+  });
+  const object = value => value !== null && typeof value === "object" && !Array.isArray(value);
+  const count = value => Number.isSafeInteger(value) && value >= 0;
+  const date = value => typeof value === "string" && /^\d{4}-\d{2}-\d{2}$/.test(value);
+  const passed = (id, data = game) => data.decisions[id].choice === tasks[id].story.correct;
+
+  function validSave(data) {
+    if (!object(data) || data.version !== 1 || !Object.hasOwn(rooms, data.room)
+        || typeof data.closed !== "boolean" || !object(data.decisions) || !object(data.mistakes)) return false;
+    if (data.feedback !== null && !taskIds.includes(data.feedback)) return false;
+    const person = data.profile;
+    if (!object(person) || typeof person.name !== "string" || !person.name.trim()
+        || person.name.length > 20 || !backgrounds.includes(person.background)) return false;
+    return taskIds.every(id => {
+      const result = data.decisions[id];
+      const mistake = data.mistakes[id];
+      return object(result) && count(result.errors)
+        && (result.choice === null || (count(result.choice) && result.choice < tasks[id].story.options.length))
+        && (mistake === undefined || (object(mistake) && count(mistake.attempts)
+          && count(mistake.streak) && mistake.streak <= 3 && date(mistake.due)
+          && typeof mistake.reason === "string"))
+        && ((!data.closed && data.feedback !== id) || passed(id, data));
+    });
+  }
+
+  let game = fresh();
+  let saveIssue = "";
+  let dirty = false;
+  let reviewId = null;
+  let reviewResult = null;
+  let savedSnapshot = null;
+  try {
+    savedSnapshot = localStorage.getItem(storageKey);
+    if (savedSnapshot !== null) {
+      const data = JSON.parse(savedSnapshot);
+      if (!validSave(data)) throw new Error("Invalid game save");
+      game = data;
+    }
+  } catch {
+    saveIssue = "无法读取现有游戏存档。本次仍可试玩，手动保存已停用。";
+  }
+
+  const shell = document.getElementById("appShell");
+  const view = document.getElementById("capital-life");
+  const button = (action, label, value = "", primary = false) =>
+    `<button type="button" class="${primary ? "life-primary" : "secondary"}" data-life="${action}" data-value="${value}">${label}</button>`;
+
+  function saveGame() {
+    const status = view.querySelector(".life-save-state");
+    if (!game.profile || saveIssue) return;
+    try {
+      if (localStorage.getItem(storageKey) !== savedSnapshot) {
+        status.textContent = "另一个页面已更新游戏存档。请刷新后继续。";
+        return;
+      }
+      const savedAt = new Date().toISOString();
+      const snapshot = JSON.stringify({ ...game, savedAt });
+      localStorage.setItem(storageKey, snapshot);
+      savedSnapshot = snapshot;
+      game.savedAt = savedAt;
+      dirty = false;
+      status.textContent = "已保存，可刷新后继续。";
+    } catch {
+      status.textContent = "保存失败，请检查浏览器的本地存储设置后重试。";
+    }
+  }
+
+  const pendingMistakes = () => taskIds.filter(id => game.mistakes[id] && game.mistakes[id].streak < 3);
+  const nextTask = () => taskIds.find(id => !passed(id));
+
+  function start(room = game.room, id = null) {
+    shell.hidden = true;
+    view.hidden = false;
+    if (game.profile && game.room !== room) {
+      game.room = room;
+      dirty = true;
+    }
+    reviewId = id;
+    reviewResult = null;
+    renderGame("life-heading");
+  }
+
+  function returnToStudy(point) {
+    view.hidden = true;
+    shell.hidden = false;
+    const target = point && pointFromKey(point);
+    if (target) {
+      state.course = target.course;
+      state.chapter = target.chapter;
+      openPoint(target.point);
+      document.querySelector("#main h2")?.scrollIntoView({ block: "nearest" });
+    } else {
+      render();
+      document.getElementById("life-launch").focus();
+    }
+  }
+
+  function takeStory(id, choice) {
+    const task = tasks[id];
+    if (!game.profile || game.room !== "meeting" || reviewId || game.feedback || id !== nextTask()
+        || game.decisions[id].choice !== null || !task.story.options[choice]) return;
+    const record = game.decisions[id];
+    record.choice = choice;
+    if (passed(id)) {
+      game.feedback = id;
+    } else {
+      record.errors += 1;
+      const previous = game.mistakes[id];
+      game.mistakes[id] = {
+        streak: 0, attempts: previous?.attempts ?? 0, due: chinaDate(),
+        reason: task.story.options[choice][1]
+      };
+    }
+    dirty = true;
+    renderGame("life-feedback");
+  }
+
+  function takeReview(choice) {
+    const record = game.mistakes[reviewId];
+    if (!record || reviewResult || record.streak >= 3 || record.due > chinaDate()) return;
+    const question = tasks[reviewId].review(record.attempts);
+    if (!question.options[choice]) return;
+    const correct = choice === question.correct;
+    record.attempts += 1;
+    record.streak = correct ? record.streak + 1 : 0;
+    if (!correct) record.reason = question.options[choice][1];
+    record.due = shiftDate(chinaDate(), correct ? (record.streak === 1 ? 1 : 3) : 0);
+    reviewResult = { question, choice };
+    dirty = true;
+    renderGame("life-feedback");
+  }
+
+  function questionView(task, question, choice, action, outcome, after = "") {
+    const answered = choice !== null;
+    const correct = choice === question.correct;
+    const options = question.options.map(([label], index) => {
+      const result = answered && (index === question.correct ? "correct" : index === choice ? "incorrect" : "");
+      const note = result === "correct" ? " · 正确选项" : result === "incorrect" ? " · 你的选择" : "";
+      return `<button type="button" data-life="${action}" data-value="${index}"${answered ? " disabled" : ""}${result ? ` data-result="${result}"` : ""}>${esc(label)}${note}</button>`;
+    }).join("");
+    const feedback = answered ? `
+      <div class="life-feedback" id="life-feedback" tabindex="-1">
+        <h3>${correct ? "判断正确" : "需要订正"}</h3>
+        ${outcome ? `<p>${esc(outcome)}</p>` : ""}
+        ${!correct ? `<p>${esc(question.options[choice][1])}</p>` : ""}
+        <p>${esc(question.explanation)}</p>
+        <p class="life-source">${esc(task.source)}</p>
+        <div class="life-actions">${after}${button("lesson", "打开课程知识点", task.point)}</div>
+      </div>` : "";
+    return `<p>${esc(question.prompt)}</p><div class="life-choices">${options}</div>${feedback}`;
+  }
+
+  function mistakeList(ids, inGame = false) {
+    return ids.map(id => {
+      const task = tasks[id];
+      const entry = game.mistakes[id];
+      const schedule = entry.streak >= 3 ? "已归档" : entry.due <= chinaDate() ? "今日可复习" : `下次复习 ${entry.due}`;
+      const actions = (entry.streak < 3 ? button("review", "打开复习", id, inGame) : "") +
+        button("lesson", "打开课程知识点", task.point);
+      return `<article class="life-task">
+        <h3>${task.title}</h3><p>最近错因 · ${esc(entry.reason)}</p>
+        <p>第 ${Number(task.chapter.slice(3)) + 1} 章 · ${schedule} · 连续答对 ${entry.streak}/3</p>
+        <div class="life-actions">${actions}</div>
+      </article>`;
+    }).join("");
+  }
+
+  function reviewView() {
+    const task = tasks[reviewId];
+    const entry = game.mistakes[reviewId];
+    const back = button("room", "返回办公室", "office");
+    let content;
+    if (reviewResult) {
+      const { question, choice } = reviewResult;
+      const outcome = entry.streak === 3 ? "连续答对三次，已归档。" :
+        entry.streak ? `已订正，下次复习 ${entry.due}。` : "错题仍在今日待办中。";
+      const after = entry.streak ? back : button("review", "重做变式题", reviewId, true);
+      content = questionView(task, question, choice, "review-answer", outcome, after);
+    } else if (entry.due > chinaDate() || entry.streak >= 3) {
+      content = `<p>${entry.streak >= 3 ? "这道题已归档。" : `下次复习 ${entry.due}。`}</p>
+        <div class="life-actions">${back}${button("lesson", "打开课程知识点", task.point)}</div>`;
+    } else {
+      content = questionView(task, task.review(entry.attempts), null, "review-answer");
+    }
+    return `<section class="life-card"><h2 id="life-heading" tabindex="-1">错题复习 · ${task.title}</h2>${content}</section>`;
+  }
+
+  function roomHeader(room) {
+    const [name, location] = rooms[room];
+    return `<section class="life-card life-room life-room--${room}"><div>
+      <p class="life-muted">${location}</p><h2 id="life-heading" tabindex="-1">${name}</h2>
+    </div></section>`;
+  }
+
+  function metrics() {
+    const trust = Math.max(0, 80 - game.decisions.valuation.errors * 8);
+    const compliance = Math.max(0, 100 - game.decisions.conflict.errors * 15);
+    const invested = game.closed ? funding.investment : 0;
+    const cells = [
+      ["可投余额", amount(funding.available - invested), "万元"],
+      ["已投金额", amount(invested), "万元"],
+      ["LP 信任", trust, "/ 100"],
+      ["合规评分", compliance, "/ 100"]
+    ];
+    return `<section class="life-card"><h3>模拟基金台账</h3>
+      <dl class="life-metrics">${cells.map(([label, value, unit]) =>
+        `<div><dt>${label}</dt><dd><strong>${value}</strong> <small>${unit}</small></dd></div>`).join("")}</dl>
+    </section>`;
+  }
+
+  function onboarding() {
+    return `<section class="life-card">
+      <h3>创建你的投资助理</h3>
+      <p>这是你在远岬创投的第一周。导师请你准备一份机器人项目的增资备忘录。</p>
+      <form id="life-onboarding" class="life-form">
+        <label>角色姓名<input name="name" required maxlength="20" autocomplete="off" placeholder="输入姓名或昵称"></label>
+        <label>入职前的履历<select name="background">${backgrounds.map(name => `<option>${name}</option>`).join("")}</select></label>
+        <button class="life-primary" type="submit">办理入职</button>
+      </form>
+    </section>`;
+  }
+
+  function firmView() {
+    return `<section class="life-card">
+      <h3>投资管线</h3>
+      <p>砺行机器人正在为下一代仓储分拣设备融资。你负责核算本轮增资并提交合规建议。</p>
+      <p>项目状态 · ${game.closed ? "模拟已交割" : nextTask() === "valuation" ? "估值待审核" : nextTask() === "conflict" ? "关联关系待审议" : "待确认交割"}</p>
+      ${button("room", game.closed ? "查看交割记录" : "进入项目会场", "meeting", true)}
+    </section>`;
+  }
+
+  function officeView() {
+    const done = taskIds.filter(id => passed(id)).length;
+    return `<section class="life-card">
+      <h3>${game.closed ? "首单复盘" : "导师任务"}</h3>
+      <p>${game.closed
+        ? `你已完成估值和合规审议。基金在模拟交割后持有砺行机器人约 ${ownership(funding.pre, funding.investment)}% 的股份。`
+        : "先核对股权比例，再向投委会解释关联交易应该怎么审。两项通过后可以确认模拟交割。"
+      }</p>
+      <p>完成 ${done} / ${taskIds.length} 项审议</p>
+      ${button("room", game.closed ? "查看交易摘要" : "前往项目会场", "meeting", true)}
+    </section>
+    <section class="life-card"><h3>错题与复习</h3>
+      ${mistakeList(taskIds.filter(id => game.mistakes[id]), true) || "<p>剧情中的错题会显示在这里。</p>"}
+    </section>`;
+  }
+
+  function meetingView() {
+    const id = nextTask();
+    let content;
+    if (game.closed) {
+      content = `<h3>模拟交割完成</h3>
+        <p>基金投入 ${amount(funding.investment)} 万元，投后估值为 ${amount(funding.pre + funding.investment)} 万元，持有约 ${ownership(funding.pre, funding.investment)}% 股权。</p>
+        <p>交易台账已经更新。你可以回办公室查看首单复盘。</p>
+        ${button("room", "回办公室复盘", "office", true)}`;
+    } else if (!id) {
+      content = `<h3>待确认交割</h3>
+        <p>估值备忘录已通过，案例合同要求的关联交易审议与披露已完成。确认后，模拟基金将拨付 ${amount(funding.investment)} 万元。</p>
+        ${button("close", "确认模拟交割", "", true)}`;
+    } else {
+      const task = tasks[id];
+      const { choice } = game.decisions[id];
+      content = `<h3>${task.title}</h3>
+        ${questionView(task, task.story, choice, "story-answer", choice === null ? "" : task.failure,
+          button("retry", "订正并重新提交", "", true))}`;
+    }
+    const briefing = `<h3>砺行机器人</h3><p>仓储分拣设备 · 模拟增资</p>
+      <dl class="life-metrics"><div><dt>投前估值</dt><dd><strong>${amount(funding.pre)}</strong> 万元</dd></div>
+      <div><dt>拟投资额</dt><dd><strong>${amount(funding.investment)}</strong> 万元</dd></div></dl>`;
+    return `<section class="life-card">${briefing}</section><section class="life-card">${content}</section>`;
+  }
+
+  function successView() {
+    const task = tasks[game.feedback];
+    return `<section class="life-card"><h3>${task.title}</h3>
+      ${questionView(task, task.story, task.story.correct, "story-answer", task.success,
+        button("continue", game.feedback === "valuation" ? "进入关联交易审议" : "查看交割条件", "", true))}
+    </section>`;
+  }
+
+  function renderGame(focus) {
+    const room = game.room;
+    const person = game.profile;
+    const nav = Object.entries(rooms).map(([id, [name]]) =>
+      `<button type="button" data-life="room" data-value="${id}"${!person ? " disabled" : ""}
+        ${room === id && !reviewId ? ' aria-current="page"' : ""}>${name}</button>`).join("");
+    const saveStatus = saveIssue || (dirty ? "有未保存的进度。" : game.savedAt ? "已载入保存的进度。" : "");
+    const roomContent = !person ? onboarding() : room === "firm" ? firmView() :
+      room === "office" ? officeView() : game.feedback ? successView() : meetingView();
+    view.innerHTML = `<div class="wrap life-wrap">
+      <div class="life-top"><div><p class="life-muted">第一笔投资</p><h1>资本人生</h1></div>
+        <div class="life-actions">
+          ${button("return", "返回工作台")}
+          <button class="life-primary" type="button" data-life="save"${!person || saveIssue ? " disabled" : ""}>手动保存</button>
+        </div>
+      </div>
+      <p class="life-save-state" role="status">${esc(saveStatus)}</p>
+      <nav class="life-nav" aria-label="游戏场景">${nav}</nav>
+      <div class="life-grid"><div class="life-stack">
+        ${reviewId ? reviewView() : roomHeader(room) + roomContent}
+      </div><aside class="life-stack" aria-label="角色与经营">
+        ${person ? `<section class="life-card"><h3>${esc(person.name)}</h3>
+          <p>投资助理 · ${esc(person.background)}背景</p></section>` : ""}
+        ${metrics()}
+      </aside></div>
+    </div>`;
+    if (focus) document.getElementById(focus)?.focus();
+  }
+
+  function validLegacy(data) {
+    return object(data) && object(data.ch) && Array.isArray(data.mis)
+      && (data.log === undefined || Array.isArray(data.log))
+      && (data.ku === undefined || object(data.ku));
+  }
+
+  function readLegacy() {
+    try {
+      const data = JSON.parse(localStorage.getItem(legacyKey));
+      return validLegacy(data) ? data : null;
+    } catch {
+      return null;
+    }
+  }
+
+  function legacyArchive() {
+    const legacy = readLegacy();
+    const misses = legacy?.mis.filter(item => object(item)) ?? [];
+    return `<details class="backup-panel life-workbench">
+      <summary>旧版学习档案与 JSON 备份</summary>
+      ${misses.length ? `<ul>${misses.map(item =>
+        `<li><b>${esc(item.id ?? "")} · ${esc(item.q ?? "")}</b>
+          <div>${esc(item.why ?? "")} · ${esc(item.fix ?? "")}</div>
+          ${date(item.due) ? `<small>复习日 ${esc(item.due)}</small>` : ""}</li>`).join("")}</ul>` : "<p>当前网址没有可显示的旧版错题。可粘贴旧工作台导出的备份。</p>"}
+      <label>旧版 JSON<textarea class="life-legacy-data" id="life-legacy-data" spellcheck="false"></textarea></label>
+      <div class="life-actions">
+        ${button("legacy-export", "生成可复制的旧版备份")}
+        ${button("legacy-import", "恢复旧版备份")}
+      </div>
+      <p id="life-legacy-status" class="smallnote" role="status">恢复会替换当前浏览器中的旧版学习档案。</p>
+    </details>`;
+  }
+
+  function legacyBackup(action) {
+    const field = document.getElementById("life-legacy-data");
+    let status = document.getElementById("life-legacy-status");
+    try {
+      if (action === "legacy-export") {
+        const data = readLegacy();
+        if (!data) {
+          status.textContent = "当前网址没有可导出的旧版档案。";
+          return;
+        }
+        field.value = JSON.stringify(data, null, 2);
+        field.focus();
+        field.select();
+        status.textContent = "备份已选中，请复制并保存。";
+        return;
+      }
+      const data = JSON.parse(field.value);
+      if (!validLegacy(data)) throw new Error("Invalid legacy backup");
+      localStorage.setItem(legacyKey, JSON.stringify(data));
+      render();
+      status = document.getElementById("life-legacy-status");
+      status.closest("details").open = true;
+      status.textContent = "旧版档案已恢复。";
+      status.closest("details").querySelector("summary").focus();
+    } catch {
+      status.textContent = "恢复失败，请检查是否粘贴了完整的旧版 JSON，以及浏览器是否允许保存。";
+    }
+  }
+
+  function workbench() {
+    const pending = pendingMistakes();
+    const due = pending.filter(id => game.mistakes[id].due <= chinaDate()).length;
+    return `<section class="backup-panel life-workbench"><b>资本人生 · 剧情错题</b>
+      ${pending.length ? `<p>今日待复习 ${due} 道</p>${mistakeList(pending)}` :
+        "<p>投资助理的第一笔投资。剧情中答错的题目会安排到这里复习。</p>"}
+    </section>${legacyArchive()}`;
+  }
+
+  view.addEventListener("submit", event => {
+    if (event.target.id !== "life-onboarding" || game.profile) return;
+    event.preventDefault();
+    const form = new FormData(event.target);
+    const name = String(form.get("name")).trim();
+    const background = form.get("background");
+    if (!name || name.length > 20 || !backgrounds.includes(background)) {
+      const input = event.target.elements.name;
+      input.setCustomValidity("请输入 1–20 个字符的姓名。");
+      input.reportValidity();
+      return;
+    }
+    game.profile = { name, background };
+    dirty = true;
+    renderGame("life-heading");
+  });
+  view.addEventListener("input", event => {
+    if (event.target.name === "name") event.target.setCustomValidity("");
+  });
+
+  document.addEventListener("click", event => {
+    const control = event.target.closest("button[data-life]");
+    if (!control) return;
+    const action = control.dataset.life;
+    const value = control.dataset.value;
+    switch (action) {
+      case "launch": start(); break;
+      case "return": returnToStudy(); break;
+      case "save": saveGame(); break;
+      case "room":
+        if (game.profile && Object.hasOwn(rooms, value)) start(value);
+        break;
+      case "story-answer": {
+        const id = nextTask();
+        if (!id) break;
+        takeStory(id, Number(value));
+        break;
+      }
+      case "continue":
+        if (!game.feedback) break;
+        game.feedback = null;
+        dirty = true;
+        renderGame("life-heading");
+        break;
+      case "retry": {
+        const id = nextTask();
+        if (!id) break;
+        game.decisions[id].choice = null;
+        dirty = true;
+        renderGame("life-heading");
+        break;
+      }
+      case "close":
+        if (game.profile && !game.closed && !nextTask()) {
+          game.closed = true;
+          dirty = true;
+          renderGame("life-heading");
+        }
+        break;
+      case "review":
+        if (Object.hasOwn(tasks, value) && game.mistakes[value]) start("office", value);
+        break;
+      case "review-answer": takeReview(Number(value)); break;
+      case "lesson": returnToStudy(value); break;
+      case "legacy-export":
+      case "legacy-import": legacyBackup(action); break;
+    }
+  });
+
+  return { workbench };
+})();
+
 normalizeState();
 const openDate=chinaDate();if(state.lastOpenDate!==openDate)state.tab="home";state.lastOpenDate=openDate;
 state.seen[state.course+":"+state.chapter]=true;
