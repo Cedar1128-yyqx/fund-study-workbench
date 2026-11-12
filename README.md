@@ -10,8 +10,8 @@
 
 ## Supabase 云同步
 
-- 项目 URL 已写入页面，Publishable key 目前留空。将 `sb_publishable_...` 填入 `index.html` 中的 `SUPABASE_PUBLISHABLE_KEY` 后，注册、登录与学习记录云同步才会启用。
-- 从 [Supabase 项目 API Keys 设置](https://supabase.com/dashboard/project/rkyhadpalzgvnjpitdjs/settings/api-keys)复制 **Publishable key**。不要使用 `sb_secret_...`、`service_role` 或其他服务端密钥。
+- 项目 URL 与 Publishable key 已写入页面，注册、登录与学习记录云同步会连接到 Supabase 项目。
+- Publishable key 专供浏览器使用，因此会出现在公开网页源码中；请勿使用 `sb_secret_...`、`service_role` 或其他服务端密钥。
 - 首次使用前，在 Supabase SQL Editor 运行仓库中的 `supabase-setup.sql`。该脚本为 `study_state` 启用 RLS，并按登录用户限制读写。
 - Publishable key 设计为可出现在前端；数据隔离依赖 SQL 中的 RLS 策略。不要在公开仓库放入 Secret / service_role key。
 
