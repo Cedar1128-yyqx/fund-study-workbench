@@ -1,5 +1,5 @@
-Warning: truncated output (original token count: 37663)
-Total output lines: 449
+Warning: truncated output (original token count: 34790)
+Total output lines: 403
 
 <!doctype html>
 <html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
@@ -84,26 +84,8 @@ body{line-height:1.75}.hero p,.lead,.concept p,.term p,.formula p,.mapdesc,.chap
 @media(prefers-color-scheme:dark){.auth-card{background:linear-gradient(120deg,#27282a,#1d1e20);border-color:rgba(255,255,255,.14);color:#ecece8}.auth-card p,.auth-card label,.auth-email-confirm{color:#c4c4bd}.auth-card input{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.18);color:#ecece8}.auth-switch button,.auth-secondary{color:#ecece8;background:rgba(255,255,255,.1)}.auth-config{background:rgba(255,255,255,.07)}.account-controls button{color:var(--ink);background:rgba(255,255,255,.25)}}
 </style></head>
 <body>
-<div id="authGate" class="auth-gate">
-<section class="auth-card" aria-labelledby="authTitle">
-<div class="eyebrow">基金从业学习工作台</div><h1 id="authTitle">学习账户</h1>
-<p id="authHint">登录后在不同设备继续学习，进度会自动同步。</p>
-<div id="authConfig" class="auth-config auth-hidden-el"></div>
-<div id="authControls">
-<div class="auth-switch"><button type="button" id="modeLogin" onclick="setAuthMode('login')">登录</button><button type="button" id="modeSignup" onclick="setAuthMode('signup')">注册新账号</button></div>
-<form id="authForm" onsubmit="submitAuth(event)">
-<label for="authEmail">邮箱</label><input id="authEmail" type="email" autocomplete="email" required>
-<label for="authPassword" id="passwordLabel">密码</label><input id="authPassword" type="password" autocomplete="current-password" minlength="8" required>
-<div id="confirmPasswordWrap" class="auth-hidden-el"><label for="authPasswordConfirm">再次输入密码</label><input id="authPasswordConfirm" type="password" autocomplete="new-password" minlength="8"></div>
-<button class="auth-submit" id="authSubmit" type="submit">登录</button>
-</form>
-<button type="button" id="forgotPassword" class="auth-secondary" onclick="sendPasswordReset()">忘记密码</button>
-</div>
-<div id="authMessage" class="auth-message" role="status" aria-live="polite">正在连接登录服务…</div>
-<button type="button" id="localPreview" class="auth-secondary auth-hidden-el" onclick="continueLocalPreview()">暂时以本地模式预览</button>
-</section></div>
-<div id="appShell" class="wrap auth-hidden">
-<header><div class="brand">基金从业学习工作台<small>零基础课程 · 三科循序学习</small></div><div class="header-tools"><span id="syncBadge" class="sync-badge">等待连接</span><span class="tag">按 2026 年度大纲更新</span><span id="accountControls" class="account-controls"></span></div></header>
+<div id="appShell" class="wrap">
+<header><div class="brand">基金从业学习工作台<small>零基础课程 · 三科循序学习</small></div><div class="header-tools"><span id="syncBadge" class="sync-badge">进度自动保存在此浏览器</span><span class="tag">按 2026 年度大纲更新</span></div></header>
 <div class="layout"><aside class="side"><div class="sidebox">
 <div class="navtabs"><button type="button" data-tab="home">路线</button><button type="button" data-tab="course" class="active">课程</button><button type="button" data-tab="map">思维导图</button><button type="button" data-tab="refs">术语与来源</button></div>
 <input id="search" class="search" placeholder="搜全科章节、知识点或术语" oninput="filterChapters()">
@@ -111,7 +93,6 @@ body{line-height:1.75}.hero p,.lead,.concept p,.term p,.formula p,.mapdesc,.chap
 <div id="courseLabel" class="label">学习顺序</div><div id="courses" class="courses"></div><div id="chapterLabel" class="label">本科学章节</div><div id="chapters" class="chapter-list"></div>
 </div></aside><main id="main" class="main"></main></div>
 </div>
-<script defer src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
 const COURSES=[
 {name:"科目一",title:"基金基础知识与法律法规",subtitle:"先打地基：市场、基金、规则与职业责任",chapters:[
@@ -129,13 +110,7 @@ const COURSES=[
 {title:"基金的类型",intro:"基金名称往往同时包含多个分类。要先问“按什么标准分”，再理解这只基金适合什么用途、承担什么风险。",units:[["按投资对象","股票基金、债券基金、货币市场基金、混合基金和基金中基金等，资产构成与主要风险来源不同。"],["按运作方式","开放式基金按规则办理申购赎回；封闭式基金在约定期限内份额相对固定，交易安排不同。开放式不等于随时无条件取款。"],["指数与主动管理","指数基金试图跟踪指数，主动基金由管理人依据策略选择资产。指数跟踪仍有跟踪误差，主动管理也不保证跑赢基准。"],["特殊类型","QDII涉及境外投资，公募REITs投资基础设施相关资产并按规则运作。识别名称后要进一步看合同、投资范围和风险揭示。"]],example:"一只开放式债券指数基金：开放式描述申赎安排，债券描述投资对象，指数描述管理方法。这三个标签回答不同问题。",trap:"不能把股票/债券分类和开放/封闭分类当成互斥选项。",q:"如何解读“开放式债券指数基金”这几个词？",a:"开放式说运作和申赎；债券说主要投资资产；指数说投资管理目标或方式。",map:["分类维度","投资对象、募集方式、运作方式、投资策略分别回答不同问题。","底层资产","股票、债券、货币工具、其他基金或基础设施相关资产。","管理方式","主动选择或跟踪指数，决定决策和偏差来源。","投资体验","流动性、费用、波动和风险取决于多维度组合。"]},
 {title:"投资管理基础",intro:"投资决策离不开财务报表、时间价值和数据。先读懂企业提供的数字，再判断这些数字怎样转化为价值和风险。",units:[["三张报表","资产负债表看某一时点拥有什么、欠什么；利润表看一段期间的收入和费用；现金流量表看现金从哪里来、流到哪里去。利润不等于现金。"],["报表分析","用偿债、盈利、运营效率和成长指标观察企业。杜邦分析把净资产收益率拆成利润率、资产周转率和权益乘数，帮助追问回报来自哪里。"],["货币时间价值","今天的一元钱可以投资生息，因此通常比未来的一元更有价值。终值 FV=PV×(1+r)^n；折现现值 PV=FV/(1+r)^n。"],["统计描述","均值描述中心水平，方差和标准差描述离散程度；相关性描述变量共同变化程度。历史数据只能帮助分析，不保证未来重复。"]],example:"企业账面盈利但客户尚未付款，现金流可能不足。分析偿债能力时只看利润表就会漏掉现金回收和债务到期问题。",trap:"名义利率未扣通胀，实际购买力要看实际利率；相关性不是因果关系。",q:"利润、现金流和资产负债表各回答什么问题？",a:"利润表看期间经营成果；现金流量表看现金收支；资产负债表看特定时点的资产、负债和权益。",map:["报表输入","资产负债表、利润表、现金流量表。","指标变换","比率和杜邦分解帮助比较偿债、盈利、效率与杠杆。","时间换算","复利推终值，折现把未来现金流换算为现值。","统计判断","用均值、波动和相关性描述数据，但不把历史关系误作保证。"]},
 {title:"权益投资",intro:"权益代表对企业的剩余索取权。理解股东权利、公司融资结构和估值方法，才能看懂股票价格背后的企业假设。",units:[["股本与资本结构","企业用债务和权益融资。债权人通常先于股东获得合同约定的偿付，普通股股东分享剩余收益并承担较高的不确定性。"],["普通股与优先股","普通股通常有表决和剩余索取权；优先股在分红或清算顺序上可能有优先安排，具体权利以发行文件和法律为准。"],["股票估值","相对估值用可比企业的市盈率、市净率或市销率等倍数估算；现金流折现法把未来现金流按风险折到今天。方法不同，依赖假设也不同。"],["估值不是精确答案","估值结果受增长、利润率、资本成本、可比样本和市场情绪影响。分析要说清假设，并用区间与敏感性分析呈现不确定性。"]],example:"两家机器人公司收入倍数不同，可能因为增长、毛利、订单质量、现金消耗或技术风险不同。不能仅因行业相同就照搬估值。",trap:"股价是市场成交价格，内在价值是基于假设的估算；两者可能不一致。",q:"DCF估值最关键的两类输入是什么？",a:"未来可归属投资者的现金流预测，以及反映时间价值和风险的折现率；预测期、终值等假设也会显著影响结果。",map:["企业融资","债务和权益构成资本来源，权利与风险不同。","股东权益","享有剩余利益，普通股、优先股条款可能不同。","估值输入","盈利、现金流、增长、风险、可比公司和资本成本。","估值输出","倍数法或折现法形成估值区间，再与市场价格和交易条件比较。"]},
-{title:"固定收益投资",intro:"债券像一张有期限和现金流约定的借条。投资者要判断发行人能否偿付、利率变化如何影响价格，以及债券何时能变现。",units:[["债券和市场","债券发行人按约定支付利息并偿还本金。市场包括发行与交易环节，国债、金融债和公司信用债的发行人及风险不同。"],["价格与收益率","债券价格等于未来票息和本金现金流的现值。其他条件不变时，市场利率上升，旧债券价格通常下降；期限越长，价格对利率变化通常越敏感。"],["久期与凸性","久期近似衡量价格对收益率变动的敏感度；凸性修正大幅利率变化时的曲线效应。它们是估算工具，不是价格保证。"],["收益率曲线","不同期限债券的收益率连成曲线，反映市场对利率、通胀、经济和风险的预期，也受供需和政策影响。"]],example:"市场利率上升后，新债券票息更有吸引力，旧债券通常要降价才能与新债竞争。持有到期与中途卖出面对的价格风险不同。",trap:"票面利率不等于到期收益率；到期收益率也以按假设持有和现金流再投资等条件为基础。",q:"为什么利率上升通常会让既有固定利率债券价格下跌？",a:"新发行债券提供更高收益，旧债的固定现金流相对不够吸引，价格需要下降，使其预期收益率接近市场水平。",map:["债券现金流","票息与本金按合同支付，信用风险影响能否兑现。","贴现定价","利率变化改变未来现金流现值，形成价格波动。","敏感度工具","久期提供一阶近似，凸性补充曲率影响。","期限结构","收益率曲线汇总不同期限的利率和风险信息。"]},
-{title:"衍生工具",intro:"衍生品的价值来自股票、利率、汇率或商品等基础资产。它可以对冲风险，也可能放大损失。",units:[["远期与期货","远期通常由交易双方定制条款，常在到期结算；期货是标准化合约，在交易场所集中交易并通过保证金和每日结算管理风险。"],["期权","期权买方支付权利金，获得未来按约定价格买入或卖出的权利；卖方承担相应履约义务。买方最大损失一般为权利金，卖方风险结构不同。"],["互换","双方交换约定现金流，例如固定利率与浮动利率现金流。互换可调整风险敞口，但有对手方、估值和流动性风险。"],["用衍生品的目的","套期保值降低已有敞口风险；投机主动承担风险争取收益；套利利用定价差异。必须先识别敞口、合约、保证金和极端情景。"]],example:"航空公司担心燃油涨价，可能用相关工具管理价格风险。若衍生品与实际采购价格并不完全相关，仍会留下基差风险。",trap:"“套保”不代表没有损失；保证金较小可能带来较大的名义敞口。",q:"期权买方和卖方最大的权利义务区别是什么？",a:"买方取得选择是否行权的权利并支付权利金；卖方收取权利金后承担在买方行权时履约的义务。",map:["基础资产","股价、利率、汇率、商品等驱动衍生品价值。","合约类型","远期、期货、期权、互换的权利义务和交易方式不同。","风险机制","保证金、每日结算、对手方和流动性影响损益。","使用目的","套保、投机或套利；匹配不充分会产生基差和模型风险。"]},
-{title:"另类投资",intro:"另类投资常指传统股票、债券之外的资产或策略。不同资产的估值、流动性和风险来源更复杂。",units:[["大宗商品","商品价格受供需、库存、运输、天气和政策影响。投资方式可能是实物、期货或相关证券，各自有仓储、展期和跟踪风险。"],["不动产","租金、空置率、资本化率、融资成本和物业维护共同影响价值。不动产流动性较低，估值频率和交易成本也与证券不同。"],["对冲基金策略","可能使用做空、杠杆、衍生品和复杂策略。策略名称不能替代风险分析，应理解敞口、流动性、杠杆和对手方。"],["另类资产的组合价值","另类投资可能提供不同风险收益来源，但相关性会随市场状态变化。配置要看组合整体风险、透明度、费用和退出条件。"]],example:"某商业地产账面估值稳定，不代表投资者能在短期内按该估值出售。交易稀少时，真实变现价格和时间都不确定。",trap:"资产类别不同不必然意味着低相关或分散效果稳定。",q:"评估另类资产时，为什么要单独检查流动性？",a:"许多另类资产交易不频繁、估值依赖模型或市场样本有限，急需现金时可能无法及时按合理价格变现。",map:["资产来源","商品、不动产、非传统策略等提供不同收益驱动。","估值机制","依赖供需、现金流、模型和有限交易样本。","风险特征","流动性、杠杆、透明度、估值和对手方风险。","组合配置","检查相关性、退出条件、费用与组合承受能力。"]},
-{title:"投资管理流程",intro:"投资管理不是先挑一只股票，而是从目标和约束出发，经过研究、组合构建、交易、监控和复盘。",units:[["投资目标与约束","明确收益目标、风险承受、期限、流动性需求、法规和产品合同限制。目标不清，后续基准和策略就无从判断。"],["业绩比较基准","基准是衡量策略和业绩的参照，应与投资范围和风险特征匹配。选得不合适会让业绩评价失真。"],["形成投资组合","研究形成预期和风险判断，投资决策转化为资产配置、证券选择和仓位安排，再通过交易落实。"],["持续监控","跟踪风险、偏离、流动性、投资限制和市场变化；必要时调整组合，并记录决策依据。"]],example:"一只以中证宽基为基准的基金若长期持有大量小盘股，比较业绩时要先判断策略和基准是否匹配，再解释收益差异。",trap:"业绩好坏不能只看收益数字，还要结合基准、风险、期限和策略。",q:"业绩比较基准的主要用途是什么？",a:"提供与策略相匹配的参照，帮助表达投资目标、分析偏离和评价业绩；它不是收益保证。",map:["目标与限制","收益目标、风险、期限、流动性、法规和合同约束。","研究与决策","宏观、行业和证券分析形成预期与仓位。","组合与交易","配置资产并通过交易执行投资决策。","监测与改进","对照基准、风险和限制进行监控、调整和复盘。"]},
-{title:"投资组合管理",intro:"组合管理关心的不是单一证券“好不好”，而是多项资产放在一起后，整体收益和风险如何变化。",units:[["分散化","不同资产的收益不完全同步时，组合可降低部分非系统风险。若资产高度相关或共同受同一冲击，分散效果会减弱。"],["均值—方差思想","在给定预期收益下比较风险，或在给定风险下寻找较高预期收益。结果依赖收益、波动和相关性的估计。"],["CAPM与β","β描述证券对市场系统性波动的敏感程度。CAPM把预期收益与无风险利率、β和市场风险溢价联系起来，是模型而非收益承诺。"],["资产配置与再平衡","先决定股票、债券、现金等大类权重，再选择具体资产。价格变化导致权重漂移时，按策略再平衡使组合回到目标风险。"]],example:"持有十只科技股不一定分散，因为它们可能受同一行业和利率冲击。增加现金、债券或不同收益驱动资产，才可能改变组合风险来源。",trap:"持仓数量多不等于风险分散；相关性会变化，模型输入也有估计误差。",q:"为什么投资组合风险不等于各证券风险的简单平均？",a:"组合风险还取决于权重和资产之间的相关性；收益不同步可以互相抵消一部分波动。",map:["单项资产","预期收益、波动率和系统性风险β。","资产间关系","协方差与相关性决定风险如何叠加或抵消。","组合优化","权重把单项风险收益组合成整体风险收益。","资产配置","目标权重、风险预算与再平衡决定组合结构。"]},
-{title:"投资交易管理",intro:"投资决策必须通过交易变成持仓。交易制度、订单、市场冲击和结算安排都会影响实际成…7663 tokens truncated…，再签协议、满足交割条件并办理股权变更。",
-"投资协议约定公司在特定条件下回购股权，但触发时公司现金紧张。基金需要评估义务人偿付能力和执行路径，不能把回购条款当成确定回款。",
+{title:"固定收益投资",intro:"债券像一张有期限和现金流约定的借条。投资者要判断发行人能否偿付、利率变化如何影响价格，以及债券何时能变现。",units:[["债券和市…9790 tokens truncated…径，不能把回购条款当成确定回款。",
 "被投企业经营失败并进入清算。清算人先依法处理资产与债务，只有清偿后剩余财产才可能分给股东，基金再依自身合同向投资者分配。"
 ],example:"基金持有企业股份，企业计划上市但目前股份受限售承诺约束。管理人需要比较上市后减持、第三方转让、并购或合同回购等路径，并核对每条路径的审批、期限、交易价格和交割条件，再把实际回款纳入基金分配。",trap:"项目退出、投资者转让基金份额、基金整体清算是三个不同层次；IPO、上市和卖出股份也不是同一步骤。回购承诺不等于保本，挂牌也不等于交易所上市。",q:"项目退出、企业上市和投资者退出基金有什么区别？",a:"项目退出是基金变现被投企业权益；企业上市是企业股票获得相应市场的挂牌交易资格；投资者退出基金是投资者转让或处置其基金份额。三个环节的主体、对象和规则不同。",map:[
 "退出对象","卖出被投企业权益，回款进入基金财产；不要与基金份额转让或基金清算混淆。",
@@ -229,38 +204,11 @@ const FORMULAS=[
 ["DPI / RVPI / TVPI","DPI=累计已分配÷累计实缴；RVPI=剩余估值÷累计实缴；TVPI=DPI+RVPI","DPI是已回款，RVPI是未退出估值，TVPI合计两者；未实现估值不是现金。"],
 ["投前与投后估值","投后估值=投前估值+新增投资；新股比例≈投资额÷投后估值","只适用于简化无其他股本调整的情形。条款、期权池、可转证券和多轮交割会改变结果。"]
 ];
-const SUPABASE_URL="https://rkyhadpalzgvnjpitdjs.supabase.co";
-const SUPABASE_PUBLISHABLE_KEY="sb_publishable_0n9IgADb1WEQeaI0y-psyw_JnPq87yQ"; // 前端 Publishable key；不要使用 secret key
-let supabaseClient=null,cloudUser=null,cloudStateReady=false,cloudSavingUser=null,cloudSaveTimer=null,authMode="login",localPreview=false,applyingCloudState=false;
 function blankStudyState(){return{course:0,chapter:0,tab:"home",seen:{},donePoints:{},quizAnswers:{},studyRecords:[],reviewDates:{},studiedOn:{},dailyPlans:{}}}
 let state=blankStudyState();try{state=Object.assign(state,JSON.parse(localStorage.getItem("fund-study-course-v2")||"{}"))}catch(e){}
-function persistLocalState(){try{const raw=JSON.stringify(state);localStorage.setItem("fund-study-course-v2",raw);if(cloudUser){localStorage.setItem("fund-study-course-v2-user:"+cloudUser.id,raw);localStorage.setItem("fund-study-course-v2-owner",cloudUser.id)}}catch(e){}}
-function save(){persistLocalState();if(cloudUser&&cloudStateReady&&!applyingCloudState)scheduleCloudSave()}
+function persistLocalState(){try{localStorage.setItem("fund-study-course-v2",JSON.stringify(state))}catch(e){}}
+function save(){persistLocalState()}
 function setSyncBadge(text){const el=document.getElementById("syncBadge");if(el)el.textContent=text}
-function setAuthMessage(text){const el=document.getElementById("authMessage");if(el)el.textContent=text||""}
-function setAppVisible(visible){document.getElementById("appShell").classList.toggle("auth-hidden",!visible);document.getElementById("authGate").classList.toggle("auth-hidden-el",visible)}
-function showAuthGate(mode){setAppVisible(false);const controls=document.getElementById("authControls"),config=document.getElementById("authConfig"),local=document.getElementById("localPreview");
- if(!supabaseClient){const configured=!!SUPABASE_PUBLISHABLE_KEY;controls.classList.toggle("auth-hidden-el",!configured);config.classList.remove("auth-hidden-el");local.classList.remove("auth-hidden-el");config.textContent=configured?"登录服务暂时未加载完成。邮箱和密码入口仍可见；请检查网络后刷新页面再登录。":"项目地址已配置。要开启账号登录和云同步，还需把 Supabase 的 Publishable key 填入网页设置。";setSyncBadge(configured?"登录服务连接中":"等待配置云同步");}
- else{controls.classList.remove("auth-hidden-el");config.classList.add("auth-hidden-el");local.classList.add("auth-hidden-el");if(mode)setAuthMode(mode);}
-}
-function setAuthMode(mode){authMode=mode;const login=document.getElementById("modeLogin"),signup=document.getElementById("modeSignup"),confirm=document.getElementById("confirmPasswordWrap"),forgot=document.getElementById("forgotPassword"),label=document.getElementById("passwordLabel"),submit=document.getElementById("authSubmit"),password=document.getElementById("authPassword");
- login.classList.toggle("active",mode==="login");signup.classList.toggle("active",mode==="signup");document.querySelector(".auth-switch").classList.toggle("auth-hidden-el",mode==="recovery");confirm.classList.toggle("auth-hidden-el",mode!=="signup"&&mode!=="recovery");forgot.classList.toggle("auth-hidden-el",mode!=="login");label.textContent=mode==="recovery"?"新密码":"密码";password.autocomplete=mode==="login"?"current-password":"new-password";submit.textContent=mode==="login"?"登录":mode==="signup"?"注册并同步":"更新密码";setAuthMessage("");}
-function renderAccountControls(){const el=document.getElementById("accountControls");if(!el)return;if(localPreview){el.innerHTML='<span class="account-email">本地预览</span>';return}el.innerHTML=cloudUser?'<span class="account-email">'+esc(cloudUser.email||"已登录")+'</span><button type="button" onclick="signOutCloud()">退出</button>':""}
-function mergeStudyState(local,remote){const a=local&&typeof local==="object"?local:{},b=remote&&typeof remote==="object"?remote:{},out=Object.assign({},a,b);["seen","donePoints","quizAnswers","reviewDates"].forEach(k=>out[k]=Object.assign({},a[k]||{},b[k]||{}));["studiedOn","dailyPlans"].forEach(k=>{out[k]=Object.assign({},a[k]||{},b[k]||{});Object.keys(a[k]||{}).forEach(d=>{if(a[k][d]&&b[k]&&b[k][d]&&typeof a[k][d]==="object"&&typeof b[k][d]==="object")out[k][d]=Object.assign({},a[k][d],b[k][d])})});const records=new Map();[...(Array.isArray(a.studyRecords)?a.studyRecords:[]),...(Array.isArray(b.studyRecords)?b.studyRecords:[])].forEach(r=>records.set([r.date,r.key,r.at||""].join("|"),r));out.studyRecords=[...records.values()].sort((x,y)=>String(x.at||x.date).localeCompare(String(y.at||y.date))).slice(-2000);return out}
-async function writeCloudState(){if(!supabaseClient||!cloudUser||!cloudStateReady)return;setSyncBadge("正在同步…");const {error}=await supabaseClient.from("study_state").upsert({user_id:cloudUser.id,state:state,updated_at:new Date().toISOString()},{onConflict:"user_id"});if(error)throw error;setSyncBadge("已同步 · "+new Date().toLocaleTimeString("zh-CN",{hour:"2-digit",minute:"2-digit"}))}
-function scheduleCloudSave(){if(!cloudStateReady||!cloudUser)return;setSyncBadge("有待同步记录");clearTimeout(cloudSaveTimer);cloudSaveTimer=setTimeout(()=>writeCloudState().catch(e=>{setSyncBadge("同步失败");setAuthMessage("云端保存失败："+(e.message||"请检查表和权限设置。"))}),900)}
-async function activateCloudSession(session){if(!session||!session.user||!supabaseClient)return;const user=session.user;if(cloudUser&&cloudUser.id===user.id&&cloudStateReady){cloudUser=user;renderAccountControls();setAppVisible(true);return}if(cloudSavingUser===user.id)return;cloudSavingUser=user.id;cloudUser=user;cloudStateReady=false;localPreview=false;setSyncBadge("正在读取云端记录…");renderAccountControls();
- try{let localForUser=state;try{const priorOwner=localStorage.getItem("fund-study-course-v2-owner"),cached=localStorage.getItem("fund-study-course-v2-user:"+user.id);if(cached)localForUser=JSON.parse(cached);else if(priorOwner&&priorOwner!==user.id)localForUser=blankStudyState()}catch(e){}state=Object.assign(blankStudyState(),localForUser);const {data,error}=await supabaseClient.from("study_state").select("state").eq("user_id",user.id).maybeSingle();if(error)throw error;applyingCloudState=true;if(data&&data.state)state=mergeStudyState(state,data.state);normalizeState();state.lastOpenDate=chinaDate();state.seen[state.course+":"+state.chapter]=true;ensureTodayPlan();persistLocalState();applyingCloudState=false;cloudStateReady=true;setAppVisible(true);render();await writeCloudState();}
- catch(e){applyingCloudState=false;setSyncBadge("云端未就绪");setAppVisible(true);render();setAuthMessage("已登录，但学习记录表或权限策略尚未配置。请先运行随工作台提供的 SQL 脚本。详情："+(e.message||"同步失败"))}
- finally{cloudSavingUser=null}}
-async function submitAuth(event){event.preventDefault();if(!supabaseClient){setAuthMessage("登录服务尚未连接，请检查网络后刷新页面再试。");return}const email=document.getElementById("authEmail").value.trim(),password=document.getElementById("authPassword").value,confirm=document.getElementById("authPasswordConfirm").value,button=document.getElementById("authSubmit");button.disabled=true;setAuthMessage("请稍候…");
- try{if(authMode==="recovery"){if(password.length<8)throw new Error("新密码至少输入 8 位。");if(password!==confirm)throw new Error("两次输入的新密码不一致。");const {error}=await supabaseClient.auth.updateUser({password});if(error)throw error;authMode="login";setAuthMessage("密码已更新，正在打开学习工作台…");const {data}=await supabaseClient.auth.getSession();if(data.session)await activateCloudSession(data.session);return}
- if(authMode==="signup"){if(password.length<8)throw new Error("密码至少输入 8 位。");if(password!==confirm)throw new Error("两次输入的密码不一致。");const {data,error}=await supabaseClient.auth.signUp({email,password,options:{emailRedirectTo:window.location.origin+window.location.pathname}});if(error)throw error;if(data.session)await activateCloudSession(data.session);else setAuthMessage("注册信息已提交。请到邮箱点击确认链接，再回来登录。")}
- else{const {data,error}=await supabaseClient.auth.signInWithPassword({email,password});if(error)throw error;if(data.session)await activateCloudSession(data.session)}}catch(e){setAuthMessage(e.message||"操作未完成，请稍后再试。")}finally{button.disabled=false}}
-async function sendPasswordReset(){if(!supabaseClient)return;const email=document.getElementById("authEmail").value.trim();if(!email){setAuthMessage("请先输入注册邮箱。");return}setAuthMessage("正在发送重置邮件…");const {error}=await supabaseClient.auth.resetPasswordForEmail(email,{redirectTo:window.location.origin+window.location.pathname});setAuthMessage(error?error.message:"如果该邮箱已注册，请查收密码重置邮件。")}
-async function signOutCloud(){if(!supabaseClient)return;if(cloudStateReady){clearTimeout(cloudSaveTimer);try{await writeCloudState()}catch(e){setSyncBadge("保留在本机缓存")}}persistLocalState();await supabaseClient.auth.signOut();cloudUser=null;cloudStateReady=false;renderAccountControls();showAuthGate("login");setSyncBadge("已退出")}
-function continueLocalPreview(){localPreview=true;renderAccountControls();setSyncBadge("仅保存在本设备");setAppVisible(true)}
-async function initCloudAuth(){if(!SUPABASE_PUBLISHABLE_KEY){showAuthGate();return}if(!window.supabase||!window.supabase.createClient){showAuthGate();return}try{supabaseClient=window.supabase.createClient(SUPABASE_URL,SUPABASE_PUBLISHABLE_KEY);supabaseClient.auth.onAuthStateChange((event,session)=>{if(event==="PASSWORD_RECOVERY"){authMode="recovery";showAuthGate("recovery");setAuthMessage("请输入并确认新密码。");return}if(event==="SIGNED_OUT"){cloudUser=null;cloudStateReady=false;localPreview=false;renderAccountControls();showAuthGate("login");return}if(session)setTimeout(()=>activateCloudSession(session),0)});const {data,error}=await supabaseClient.auth.getSession();if(error)throw error;if(authMode==="recovery"){showAuthGate("recovery");return}if(data.session)await activateCloudSession(data.session);else showAuthGate("login")}catch(e){supabaseClient=null;showAuthGate();setAuthMessage(e.message||"暂时无法连接 Supabase。")}}
 function esc(s){return String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]))}
 function current(){return COURSES[state.course].chapters[state.chapter]}
 function refsView(){return '<section class="panel"><div class="eyebrow">术语工具箱 · 从金融基础到基金实务</div><h2>先把常见词听懂</h2><p class="lead">按“钱与市场 → 证券与基金 → 投资与风险 → 股权基金实务”整理。每个词都附带白话解释和一个例子；有不懂的词，也可以用左侧搜索直接定位。</p><div class="glossary">'+TERMS.map((t,i)=>'<div class="term" id="term-'+i+'"><b>'+esc(t[0])+'</b><p>'+esc(t[1])+'</p><small><strong>举个例子：</strong>'+esc(t[2]||"")+'</small></div>').join("")+'</div></section><section class="panel"><div class="eyebrow">计算入门卡</div><h2>先看懂公式里的每个量</h2><p class="lead">公式卡配合对应章节学习；先明确单位、期间和假设，再代入数字。模型结果是分析工具，不是未来收益承诺。</p><div class="formula-list">'+FORMULAS.map((f,i)=>'<div class="formula" id="formula-'+i+'"><b>'+esc(f[0])+'</b><code>'+esc(f[1])+'</code><p>'+esc(f[2])+'</p></div>').join("")+'</div></section><section class="panel"><div class="eyebrow">版本与资料来源</div><h2>课程依据</h2><p>主课程按中国证券投资基金业协会 2026 年度修订大纲安排，并综合 2025 年版三本统编教材整理。主体概念、计算、场景和易混点已经写入课程，不要求你边看书边猜概念。法律、监管和交易规则可能更新，涉及具体数字、期限、税务或上市减持时，课程优先解释逻辑，并提示以现行正式规则为准。</p><div class="source-list">'+SOURCES.map(s=>'<div class="source"><a href="'+s[1]+'" target="_blank" rel="noopener">'+esc(s[0])+'</a><div class="smallnote">'+esc(s[2])+'</div></div>').join("")+'</div><p class="smallnote">工作台整理自课程教材与官方规则资料；PDF 原件保留为补充查阅材料。</p></section>'}
@@ -412,5 +360,5 @@ ensureTodayPlan();
 document.querySelector(".navtabs").addEventListener("click",function(e){const b=e.target.closest("[data-tab]");if(b)goTab(b.dataset.tab)});
 save();
 render();
-if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",initCloudAuth,{once:true});else initCloudAuth();
+setSyncBadge("进度自动保存在此浏览器");
 </script></body></html>
